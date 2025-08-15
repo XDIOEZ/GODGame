@@ -1,5 +1,40 @@
 {
   "dependencies": {
+    "com.google.external-dependency-manager": {
+      "version": "1.2.179",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://package.openupm.com"
+    },
+    "com.taptap.sdk.compliance": {
+      "version": "4.8.1-beta.1",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.taptap.sdk.core": "4.8.1-beta.1",
+        "com.taptap.sdk.login": "4.8.1-beta.1"
+      },
+      "url": "https://registry.npmjs.org"
+    },
+    "com.taptap.sdk.core": {
+      "version": "4.8.1-beta.1",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.google.external-dependency-manager": "1.2.179"
+      },
+      "url": "https://registry.npmjs.org"
+    },
+    "com.taptap.sdk.login": {
+      "version": "4.8.1-beta.1",
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {
+        "com.taptap.sdk.core": "4.8.1-beta.1"
+      },
+      "url": "https://registry.npmjs.org"
+    },
     "com.unity.2d.animation": {
       "version": "9.1.2",
       "depth": 1,
@@ -225,6 +260,13 @@
       "dependencies": {
         "com.unity.modules.androidjni": "1.0.0"
       },
+      "url": "https://packages.unity.cn"
+    },
+    "com.unity.nuget.newtonsoft-json": {
+      "version": "3.2.1",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
       "url": "https://packages.unity.cn"
     },
     "com.unity.profiling.core": {

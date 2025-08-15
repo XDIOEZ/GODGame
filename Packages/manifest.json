@@ -1,5 +1,9 @@
 {
   "dependencies": {
+    "com.google.external-dependency-manager": "1.2.179",
+    "com.taptap.sdk.compliance": "4.8.1-beta.1",
+    "com.taptap.sdk.core": "4.7.1",
+    "com.taptap.sdk.login": "4.7.1",
     "com.unity.addressables": "1.22.3",
     "com.unity.collab-proxy": "2.8.2",
     "com.unity.feature.2d": "2.0.1",
@@ -7,12 +11,14 @@
     "com.unity.ide.rider": "3.0.31",
     "com.unity.ide.visualstudio": "2.0.22",
     "com.unity.inputsystem": "1.11.2",
+    "com.unity.nuget.newtonsoft-json": "3.2.1",
     "com.unity.render-pipelines.universal": "14.0.11",
     "com.unity.test-framework": "1.1.33",
     "com.unity.textmeshpro": "3.0.7",
     "com.unity.timeline": "1.7.6",
     "com.unity.ugui": "1.0.0",
     "com.unity.visualscripting": "1.9.4",
+    "jillejr.newtonsoft.json-for-unity": "13.0.102",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
@@ -43,8 +49,7 @@
     "com.unity.modules.video": "1.0.0",
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
-    "com.unity.modules.xr": "1.0.0",
-    "jillejr.newtonsoft.json-for-unity": "13.0.102"
+    "com.unity.modules.xr": "1.0.0"
   },
   "scopedRegistries": [
     {
@@ -52,6 +57,20 @@
       "url": "https://npm.cloudsmith.io/jillejr/newtonsoft-json-for-unity",
       "scopes": [
         "jillejr.newtonsoft.json-for-unity"
+      ]
+    },
+    {
+      "name": "package.openupm.com",
+      "url": "https://package.openupm.com",
+      "scopes": [
+        "com.google.external-dependency-manager"
+      ]
+    },
+    {
+      "name": "NPMJS",
+      "url": "https://registry.npmjs.org/",
+      "scopes": [
+        "com.taptap"
       ]
     }
   ]
