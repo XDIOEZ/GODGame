@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
-using Newtonsoft.Json;
+using Sirenix.OdinInspector;
+using Unity.Plastic.Newtonsoft.Json;
 
 public static class PersistentDataUtil_Json
 {
@@ -22,10 +23,22 @@ public static class PersistentDataUtil_Json
         }
     }
 
+    public class PlayerData
+    {
+        public string name = "Player";
+        public int coin = 100;
+
+        public override string ToString()
+        {
+            return $"name={name},coin={coin}";
+        }
+    }
+
+
     /// <summary>
     /// 读取任意类型数据，读取失败返回 defaultValue
     /// </summary>
-    public static T Load<T>(string key, T defaultValue = default)
+    public static T Load<T>(string key, ref T defaultValue)
     {
         try
         {
@@ -36,8 +49,8 @@ public static class PersistentDataUtil_Json
             }
 
             string json = PlayerPrefs.GetString(key);
-            T data = JsonConvert.DeserializeObject<T>(json);
-            return data;
+            defaultValue = JsonConvert.DeserializeObject<T>(json);
+            return defaultValue;
         }
         catch (Exception e)
         {
