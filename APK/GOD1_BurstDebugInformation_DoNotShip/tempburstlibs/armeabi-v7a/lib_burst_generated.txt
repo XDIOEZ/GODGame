@@ -11,6 +11,7 @@ Library: C:\WhosNewGame\GODGame\Temp\BurstOutput\tempburstlibs\armeabi-v7a\lib_b
 --float-mode=Fast
 --generate-link-xml=Temp\burst.link.xml
 --temp-folder=C:\WhosNewGame\GODGame\Temp\Burst
+--debug=Full
 --key-folder=C:/Program Files/Unity/Hub/Editor/2022.3.51f1c1/Editor/Data/PlaybackEngines/AndroidPlayer
 --decode-folder=C:\WhosNewGame\GODGame\Library\Burst
 --output=C:\WhosNewGame\GODGame\Temp\BurstOutput\tempburstlibs\armeabi-v7a\lib_burst_generated
@@ -28,6 +29,7 @@ Library: C:\WhosNewGame\GODGame\Temp\BurstOutput\tempburstlibs\armeabi-v7a\lib_b
 --target-framework=NetFramework
 --generate-link-xml=Temp\burst.link.xml
 --temp-folder=C:\WhosNewGame\GODGame\Temp\Burst
+--debug=Full
 --key-folder=C:/Program Files/Unity/Hub/Editor/2022.3.51f1c1/Editor/Data/PlaybackEngines/AndroidPlayer
 --decode-folder=C:\WhosNewGame\GODGame\Library\Burst
 --output=C:\WhosNewGame\GODGame\Temp\BurstOutput\tempburstlibs\armeabi-v7a\lib_burst_generated
