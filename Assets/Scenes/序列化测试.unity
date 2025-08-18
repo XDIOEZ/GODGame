@@ -166,6 +166,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 813d3d2359b854145b7868053954d2d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  testData:
+    name: "\u6D4B\u8BD5_93"
+    coin: 100
+    position: {x: 15.67, y: 10}
 --- !u!1 &844291389
 GameObject:
   m_ObjectHideFlags: 0

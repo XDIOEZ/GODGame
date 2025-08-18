@@ -1,37 +1,25 @@
 using Sirenix.OdinInspector;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static PersistentDataUtil_Json;
+using ProjectBase.PersistentData;
 
 public class PersistentTest : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] // 普通序列化字段
+    private PersistentDataUtil_Odin.PlayerData testData = new PersistentDataUtil_Odin.PlayerData();
 
     [Button("测试_写入")]
-    public static void Test()
+    public void Test_Save()
     {
-        PlayerData data = new PlayerData();
-        data.name = "测试";
-        PersistentDataUtil_Json.Save("PlayerData", data);
-
+        testData.name = "测试_" + Random.Range(0, 100);
+        PersistentDataUtil_Odin.Save("PlayerData", testData);
+        Debug.Log($"已保存: {testData}");
     }
 
     [Button("测试_读取")]
-    public static void Test_Load()
+    public void Test_Load()
     {
-        PlayerData data = new PlayerData();
-        PersistentDataUtil_Json.Load("PlayerData", ref data);
-        Debug.Log(data.ToString());
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        var defaultData = new PersistentDataUtil_Odin.PlayerData();
+        var loadedData = PersistentDataUtil_Odin.Load("PlayerData", ref defaultData);
+        Debug.Log($"读取结果: {loadedData}");
     }
 }

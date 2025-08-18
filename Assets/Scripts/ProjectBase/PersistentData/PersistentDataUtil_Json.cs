@@ -1,84 +1,78 @@
 using System;
 using UnityEngine;
-using Sirenix.OdinInspector;
-using Newtonsoft.Json;
+using Sirenix.Serialization;
 
-public static class PersistentDataUtil_Json
+namespace ProjectBase.PersistentData
 {
-    /// <summary>
-    /// 保存任意类型数据到 PlayerPrefs（Json序列化）
-    /// </summary>
-    public static void Save<T>(string key, T data)
+    public static class PersistentDataUtil_Odin
     {
-        try
+        public static void Save<T>(string key, T data)
         {
-            string json = JsonConvert.SerializeObject(data);
-            PlayerPrefs.SetString(key, json);
-            PlayerPrefs.Save();
-            Debug.Log($"保存成功，Key={key}");
-        }
-        catch (Exception e)
-        {
-            Debug.LogError($"保存失败，Key={key} 异常: {e}");
-        }
-    }
-
-    public class PlayerData
-    {
-        public string name = "Player";
-        public int coin = 100;
-
-        public override string ToString()
-        {
-            return $"name={name},coin={coin}";
-        }
-    }
-
-
-    /// <summary>
-    /// 读取任意类型数据，读取失败返回 defaultValue
-    /// </summary>
-    public static T Load<T>(string key, ref T defaultValue)
-    {
-        try
-        {
-            if (!PlayerPrefs.HasKey(key))
+            try
             {
-                Debug.LogWarning($"未找到 Key={key} 的数据，返回默认值");
+                // 老版本用 byte[] 输出
+                byte[] bytes = SerializationUtility.SerializeValue<T>(data, DataFormat.JSON);
+                string json = System.Text.Encoding.UTF8.GetString(bytes);
+                PlayerPrefs.SetString(key, json);
+                PlayerPrefs.Save();
+                Debug.Log($"保存成功，Key={key}");
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"保存失败，Key={key} 异常: {e}");
+            }
+        }
+
+        public static T Load<T>(string key, ref T defaultValue)
+        {
+            try
+            {
+                if (!PlayerPrefs.HasKey(key))
+                {
+                    Debug.LogWarning($"未找到 Key={key} 的数据，返回默认值");
+                    return defaultValue;
+                }
+
+                string json = PlayerPrefs.GetString(key);
+                byte[] bytes = System.Text.Encoding.UTF8.GetBytes(json);
+                defaultValue = SerializationUtility.DeserializeValue<T>(bytes, DataFormat.JSON);
                 return defaultValue;
             }
-
-            string json = PlayerPrefs.GetString(key);
-            defaultValue = JsonConvert.DeserializeObject<T>(json);
-            return defaultValue;
+            catch (Exception e)
+            {
+                Debug.LogError($"加载失败，Key={key} 异常: {e}");
+                return defaultValue;
+            }
         }
-        catch (Exception e)
-        {
-            Debug.LogError($"加载失败，Key={key} 异常: {e}");
-            return defaultValue;
-        }
-    }
 
-    /// <summary>
-    /// 删除指定 Key 数据
-    /// </summary>
-    public static void Delete(string key)
-    {
-        if (PlayerPrefs.HasKey(key))
+        public static void Delete(string key)
         {
-            PlayerPrefs.DeleteKey(key);
+            if (PlayerPrefs.HasKey(key))
+            {
+                PlayerPrefs.DeleteKey(key);
+                PlayerPrefs.Save();
+                Debug.Log($"已删除 Key={key} 的数据");
+            }
+        }
+
+        public static void ClearAll()
+        {
+            PlayerPrefs.DeleteAll();
             PlayerPrefs.Save();
-            Debug.Log($"已删除 Key={key} 的数据");
+            Debug.Log("已清空所有 PlayerPrefs 数据");
         }
-    }
 
-    /// <summary>
-    /// 清空所有 PlayerPrefs 数据（慎用）
-    /// </summary>
-    public static void ClearAll()
-    {
-        PlayerPrefs.DeleteAll();
-        PlayerPrefs.Save();
-        Debug.Log("已清空所有 PlayerPrefs 数据");
+        [Serializable]
+        public class PlayerData
+        {
+            public string name = "Player";
+            public int coin = 100;
+            public Vector2 position = new Vector2(10, 10);
+
+            public override string ToString()
+            {
+                return $"name={name}, coin={coin}, position={position}";
+            }
+        }
     }
 }
