@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   testData:
-    name: "\u6D4B\u8BD5_93"
+    name: "\u6D4B\u8BD5_8"
     coin: 100
     position: {x: 15.67, y: 10}
 --- !u!1 &844291389

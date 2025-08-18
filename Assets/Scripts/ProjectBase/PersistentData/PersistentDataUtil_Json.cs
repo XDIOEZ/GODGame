@@ -1,78 +1,84 @@
 using System;
 using UnityEngine;
 using Sirenix.Serialization;
-
-namespace ProjectBase.PersistentData
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json;
+using Newtonsoft.Json.UnityConverters.Math;
+public static class PersistentDataUtil_Json
 {
-    public static class PersistentDataUtil_Odin
+
+    public class PlayerData
     {
-        public static void Save<T>(string key, T data)
+        public string name = "Player";
+        public int coin = 100;
+        public Vector2 position = new Vector2(10, 10);
+
+        public override string ToString()
         {
-            try
-            {
-                // 老版本用 byte[] 输出
-                byte[] bytes = SerializationUtility.SerializeValue<T>(data, DataFormat.JSON);
-                string json = System.Text.Encoding.UTF8.GetString(bytes);
-                PlayerPrefs.SetString(key, json);
-                PlayerPrefs.Save();
-                Debug.Log($"保存成功，Key={key}");
-            }
-            catch (Exception e)
-            {
-                Debug.LogError($"保存失败，Key={key} 异常: {e}");
-            }
+            return $"name={name},coin={coin}";
         }
+    }
 
-        public static T Load<T>(string key, ref T defaultValue)
+
+    public static void Save<T>(string key, T data)
+    {
+        try
         {
-            try
-            {
-                if (!PlayerPrefs.HasKey(key))
-                {
-                    Debug.LogWarning($"未找到 Key={key} 的数据，返回默认值");
-                    return defaultValue;
-                }
-
-                string json = PlayerPrefs.GetString(key);
-                byte[] bytes = System.Text.Encoding.UTF8.GetBytes(json);
-                defaultValue = SerializationUtility.DeserializeValue<T>(bytes, DataFormat.JSON);
-                return defaultValue;
-            }
-            catch (Exception e)
-            {
-                Debug.LogError($"加载失败，Key={key} 异常: {e}");
-                return defaultValue;
-            }
-        }
-
-        public static void Delete(string key)
-        {
-            if (PlayerPrefs.HasKey(key))
-            {
-                PlayerPrefs.DeleteKey(key);
-                PlayerPrefs.Save();
-                Debug.Log($"已删除 Key={key} 的数据");
-            }
-        }
-
-        public static void ClearAll()
-        {
-            PlayerPrefs.DeleteAll();
+            // 使用 converters 让 Unity 类型可序列化
+            string json = JsonConvert.SerializeObject(data, new JsonConverter[] { new Vector2Converter() });
+            PlayerPrefs.SetString(key, json);
             PlayerPrefs.Save();
-            Debug.Log("已清空所有 PlayerPrefs 数据");
+            Debug.Log($"保存成功，Key={key}");
         }
-
-        [Serializable]
-        public class PlayerData
+        catch (Exception e)
         {
-            public string name = "Player";
-            public int coin = 100;
-            public Vector2 position = new Vector2(10, 10);
-
-            public override string ToString()
-            {
-                return $"name={name}, coin={coin}, position={position}";
-            }
+            Debug.LogError($"保存失败，Key={key} 异常: {e}");
         }
+    }
+
+    public static T Load<T>(string key, ref T defaultValue)
+    {
+        try
+        {
+            if (!PlayerPrefs.HasKey(key))
+            {
+                Debug.LogWarning($"未找到 Key={key} 的数据，返回默认值");
+                return defaultValue;
+            }
+
+            string json = PlayerPrefs.GetString(key);
+            // 使用相同的 converter 反序列化
+            defaultValue = JsonConvert.DeserializeObject<T>(json, new JsonConverter[] { new Vector2Converter() });
+            return defaultValue;
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"加载失败，Key={key} 异常: {e}");
+            return defaultValue;
+        }
+    }
+
+
+    /// <summary>
+    /// 删除指定 Key 数据
+    /// </summary>
+    public static void Delete(string key)
+    {
+        if (PlayerPrefs.HasKey(key))
+        {
+            PlayerPrefs.DeleteKey(key);
+            PlayerPrefs.Save();
+            Debug.Log($"已删除 Key={key} 的数据");
+        }
+    }
+
+    /// <summary>
+    /// 清空所有 PlayerPrefs 数据（慎用）
+    /// </summary>
+    public static void ClearAll()
+    {
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save();
+        Debug.Log("已清空所有 PlayerPrefs 数据");
     }
 }

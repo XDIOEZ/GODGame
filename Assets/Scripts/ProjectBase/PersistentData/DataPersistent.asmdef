@@ -1,3 +1,18 @@
 {
-	"name": "DataPersistent"
+    "name": "DataPersistent",
+    "rootNamespace": "",
+    "references": [
+        "GUID:c55d28459d9c4444ebb4788be912e1f1",
+        "GUID:40c175c2a7668e94380e475f4008bdfe",
+        "GUID:54b32bbb6d015da4881a30377f540d42"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

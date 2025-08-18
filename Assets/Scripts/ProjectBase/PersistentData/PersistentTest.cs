@@ -11,7 +11,7 @@ public class PersistentTest : MonoBehaviour
     public void Test_Save()
     {
         testData.name = "测试_" + Random.Range(0, 100);
-        PersistentDataUtil_Odin.Save("PlayerData", testData);
+        PersistentDataUtil_Json.Save("PlayerData", testData);
         Debug.Log($"已保存: {testData}");
     }
 
@@ -19,7 +19,7 @@ public class PersistentTest : MonoBehaviour
     public void Test_Load()
     {
         var defaultData = new PersistentDataUtil_Odin.PlayerData();
-        var loadedData = PersistentDataUtil_Odin.Load("PlayerData", ref defaultData);
+        var loadedData = PersistentDataUtil_Json.Load("PlayerData", ref defaultData);
         Debug.Log($"读取结果: {loadedData}");
     }
 }
