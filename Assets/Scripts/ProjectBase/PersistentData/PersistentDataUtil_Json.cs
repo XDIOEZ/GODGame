@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 using Sirenix.OdinInspector;
-using Unity.Plastic.Newtonsoft.Json;
+using Newtonsoft.Json;
 
 public static class PersistentDataUtil_Json
 {

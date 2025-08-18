@@ -139,6 +139,24 @@
       },
       "url": "https://packages.unity.cn"
     },
+    "com.unity.adaptiveperformance.oppo.android": {
+      "version": "4.0.0",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.adaptiveperformance": "4.0.0"
+      },
+      "url": "https://packages.unity.cn"
+    },
+    "com.unity.adaptiveperformance.samsung.android": {
+      "version": "4.0.2",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.adaptiveperformance": "4.0.1"
+      },
+      "url": "https://packages.unity.cn"
+    },
     "com.unity.addressables": {
       "version": "1.22.3",
       "depth": 0,

@@ -4,6 +4,8 @@
     "com.taptap.sdk.compliance": "4.8.1-beta.1",
     "com.taptap.sdk.core": "4.7.1",
     "com.taptap.sdk.login": "4.7.1",
+    "com.unity.adaptiveperformance.oppo.android": "4.0.0",
+    "com.unity.adaptiveperformance.samsung.android": "4.0.2",
     "com.unity.addressables": "1.22.3",
     "com.unity.collab-proxy": "2.8.2",
     "com.unity.feature.2d": "2.0.1",

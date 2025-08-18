@@ -6,8 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/TapTapSDKTest.unity
+    guid: 9ccadfef395f9ef45b4d84c7840ded23
+  - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 66eea067f277d1843a586c1b35f557aa, type: 2}
+    com.unity.adaptiveperformance.oppo.android.provider_settings: {fileID: 11400000, guid: 3856acbf5b51dc447a83f312d5a60a40, type: 2}
+    com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: f7af54be76cf4a24198ae01171709720, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 617e76f24659dde43a0133dcf032408a, type: 2}
