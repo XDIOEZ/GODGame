@@ -1,25 +1,32 @@
-using Sirenix.OdinInspector;
+ï»¿using Sirenix.OdinInspector;
 using UnityEngine;
 using ProjectBase.PersistentData;
 
 public class PersistentTest : MonoBehaviour
 {
-    [SerializeField] // ÆÕÍ¨ĞòÁĞ»¯×Ö¶Î
+    [SerializeField]
     private PersistentDataUtil_Odin.PlayerData testData = new PersistentDataUtil_Odin.PlayerData();
 
-    [Button("²âÊÔ_Ğ´Èë")]
+    [Button("æµ‹è¯•_å†™å…¥")] // ç¼–è¾‘å™¨ä¸‹æ–¹ä¾¿ç‚¹å‡»
     public void Test_Save()
     {
-        testData.name = "²âÊÔ_" + Random.Range(0, 100);
+        testData.name = "æµ‹è¯•_" + Random.Range(0, 100);
         PersistentDataUtil_Json.Save("PlayerData", testData);
-        Debug.Log($"ÒÑ±£´æ: {testData}");
+        Debug.Log($"å·²ä¿å­˜: {testData}");
     }
 
-    [Button("²âÊÔ_¶ÁÈ¡")]
+    [Button("æµ‹è¯•_è¯»å–")]
     public void Test_Load()
     {
         var defaultData = new PersistentDataUtil_Odin.PlayerData();
         var loadedData = PersistentDataUtil_Json.Load("PlayerData", ref defaultData);
-        Debug.Log($"¶ÁÈ¡½á¹û: {loadedData}");
+        Debug.Log($"è¯»å–ç»“æœ: {loadedData}");
+    }
+
+    // ğŸ”½ è¿è¡Œæ—¶ï¼ˆæ‰“åŒ…åï¼‰æµ‹è¯•å…¥å£
+    private void OnGUI()
+    {
+        if (GUI.Button(new Rect(10, 10, 150, 40), "æµ‹è¯•_å†™å…¥")) Test_Save();
+        if (GUI.Button(new Rect(10, 60, 150, 40), "æµ‹è¯•_è¯»å–")) Test_Load();
     }
 }
