@@ -84,12 +84,12 @@ public class RuntimeDebugConsole : MonoBehaviour
 
     private void Update()
     {
-#if UNITY_ANDROID && !UNITY_EDITOR
-        // Android 上监听音量键同时按下
-        if (Input.GetKey(KeyCode.VolumeUp) && Input.GetKey(KeyCode.VolumeDown))
-        {
-            ToggleConsole();
-        }
-#endif
+//#if UNITY_ANDROID && !UNITY_EDITOR
+//        // Android 上监听音量键同时按下
+//        if (Input.GetKey(KeyCode.VolumeUp) && Input.GetKey(KeyCode.VolumeDown))
+//        {
+//            ToggleConsole();
+//        }
+//#endif
     }
 }

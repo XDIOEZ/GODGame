@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TapSDK.Compliance;
 using TapSDK.Core;
 using TapSDK.Login;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +16,9 @@ public class TaptapLogin : MonoBehaviour
     private Button OnLoginbutton;
 
     private Button LogOutbutton;
+
+
+    private TapADN TapADN;
     // Start is called before the first frame update
 
     private void Awake()
@@ -72,6 +76,7 @@ public class TaptapLogin : MonoBehaviour
             };
             // 发起 Tap 登录
             var userInfo = await TapTapLogin.Instance.LoginWithScopes(scopes.ToArray());
+            TapADN.SideInit();
             Debug.Log($"登录成功，当前用户 ID：{userInfo.unionId}");
         }
         catch (TaskCanceledException)

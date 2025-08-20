@@ -1,12 +1,33 @@
+buildscript {
+    repositories {
+        // 确保包含Google和Maven仓库
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        // 添加AGP 8.2.0版本（覆盖Unity默认版本）
+        classpath 'com.android.tools.build:gradle:8.2.0'
+    }
+}
+
+
 apply plugin: 'com.android.library'
 **APPLY_PLUGINS**
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 // Android Resolver Dependencies Start
+    implementation 'com.android.support:appcompat-v7:28.0.0' // Assets/TapTap/TapAD/Editor/TapAdDependencies.xml:7
+    implementation 'com.android.support:recyclerview-v7:28.0.0' // Assets/TapTap/TapAD/Editor/TapAdDependencies.xml:11
+    implementation 'com.android.support:support-annotations:28.0.0' // Assets/TapTap/TapAD/Editor/TapAdDependencies.xml:8
+    implementation 'com.android.support:support-v4:28.0.0' // Assets/TapTap/TapAD/Editor/TapAdDependencies.xml:9
+    implementation 'com.github.bumptech.glide:glide:4.9.0' // Assets/TapTap/TapAD/Editor/TapAdDependencies.xml:10
+    implementation 'com.squareup.okhttp3:okhttp:3.12.1' // Assets/TapTap/TapAD/Editor/TapAdDependencies.xml:6
     implementation 'com.taptap.sdk:tap-compliance:4.8.1-beta.1' // Packages/com.taptap.sdk.compliance/Mobile/Editor/NativeDependencies.xml:7
     implementation 'com.taptap.sdk:tap-core-unity:4.8.1-beta.1' // Packages/com.taptap.sdk.core/Mobile/Editor/NativeDependencies.xml:7
     implementation 'com.taptap.sdk:tap-login-unity:4.8.1-beta.1' // Packages/com.taptap.sdk.login/Mobile/Editor/NativeDependencies.xml:7
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1' // Assets/TapTap/TapAD/Editor/TapAdDependencies.xml:4
+    implementation 'io.reactivex.rxjava2:rxjava:2.0.1' // Assets/TapTap/TapAD/Editor/TapAdDependencies.xml:5
 // Android Resolver Dependencies End
 **DEPS**}
 
@@ -14,6 +35,7 @@ dependencies {
 android {
   packagingOptions {
       exclude ('/lib/armeabi/*' + '*')
+      exclude ('/lib/armeabi-v7a/*' + '*')
       exclude ('/lib/mips/*' + '*')
       exclude ('/lib/mips64/*' + '*')
       exclude ('/lib/x86/*' + '*')
@@ -52,6 +74,7 @@ android {
         ignoreAssetsPattern = "!.svn:!.git:!.ds_store:!*.scc:!CVS:!thumbs.db:!picasa.ini:!*~"
     }**PACKAGING_OPTIONS**
 }
+
 **IL_CPP_BUILD_SETUP**
 **SOURCE_BUILD_SETUP**
 **EXTERNAL_SOURCES**
