@@ -1,10 +1,9 @@
 {
-    "name": "DataPersistent",
+    "name": "GameBaseScripts",
     "rootNamespace": "",
     "references": [
-        "GUID:c55d28459d9c4444ebb4788be912e1f1",
-        "GUID:40c175c2a7668e94380e475f4008bdfe",
-        "GUID:54b32bbb6d015da4881a30377f540d42"
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:c55d28459d9c4444ebb4788be912e1f1"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
