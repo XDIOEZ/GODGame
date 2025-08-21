@@ -1,11 +1,12 @@
 using System;
 using System.Threading;
+using System.Threading.Tasks;
+using TapSDK.Login;
 using TapTap.TapAd;
 using TapTap.TapAd.Internal;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
-using System.Threading.Tasks;
 using static TapAdDemo;
 
 public class TapADN : MonoBehaviour
@@ -17,7 +18,7 @@ public class TapADN : MonoBehaviour
     // rewardVideo 竖屏id
     private const int PORTRAIT_REWARD_ID = 1048214;
     // rewardVideo 横屏id
-    private const int LANDSCAPE_REWARD_ID = 1048214;
+    private const int LANDSCAPE_REWARD_ID = 1048229;
     // splash 竖屏id
     private const int PORTRAIT_SPLASH_ID = 1048214;
     // splash 横屏id
@@ -307,6 +308,9 @@ public class TapADN : MonoBehaviour
     /// <param name="isHorizontal"></param>
     private async void LoadInterstitialAd(bool isHorizontal)
     {
+        TapTapAccount taptapAccount = await TapTapLogin.Instance.GetCurrentTapAccount();
+        AccessToken accessToken = taptapAccount.accessToken;
+        string openId = taptapAccount.openId;
         if (TapAdSdk.IsInited == false)
         {
             ShowText("TapAd 没有初始化!将自动初始化");
@@ -324,11 +328,12 @@ public class TapADN : MonoBehaviour
         }
 
         int adId = isHorizontal ? LANDSCAPE_INTERSTITIAL_ID : PORTRAIT_INTERSTITIAL_ID;
+        Debug.Log(openId);
         // create AdRequest
         var request = new TapAdRequest.Builder()
             .SpaceId(adId)
             .Extra1("{}")
-            .UserId("123")
+            .UserId(openId)
             .Build();
         _tapInterstitialAd = new TapInterstitialAd(request);
         _tapInterstitialAd.SetLoadListener(new InterstitialAdLoadListener(this));
@@ -424,12 +429,12 @@ public class TapADN : MonoBehaviour
 
         public bool CanUsePhoneState => false;
         public string GetDevImei => "";
-        public bool CanUseWifiState => false;
-        public bool CanUseWriteExternal => false;
+        public bool CanUseWifiState => true;
+        public bool CanUseWriteExternal => true;
         public string GetDevOaid => null;
-        public bool Alist => false;
-        public bool CanUseAndroidId => false;
-        public CustomUser ProvideCustomer() => null;
+        public bool Alist => true;
+        public bool CanUseAndroidId => true;
+        public CustomUser ProvideCustomer() => new CustomUser();
     }
     /// <summary>
     /// 监控激励广告效果和用户行为
