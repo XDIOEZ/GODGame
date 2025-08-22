@@ -58,9 +58,9 @@ public class TapADN : MonoBehaviour
         mainThreadId = Thread.CurrentThread.ManagedThreadId;
 
 
-        LoadVideo.onClick.RemoveAllListeners();
+        //LoadVideo.onClick.RemoveAllListeners();
         LoadVideo.onClick.AddListener(() => LoadRewardVideoAd(true));
-        playVideo.onClick.RemoveAllListeners();
+        //playVideo.onClick.RemoveAllListeners();
         playVideo.onClick.AddListener(PlayRewardVideoAd);
     }
 
