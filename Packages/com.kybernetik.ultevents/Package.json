@@ -1,0 +1,15 @@
+{
+  "name": "com.kybernetik.ultevents",
+  "displayName": "UltEvents",
+  "version": "3.0.2",
+  "description": "UltEvents allows you to easily setup and configure persistent event callbacks via the Inspector. It serves the same purpose as the inbuilt UnityEvents, but has superior features with fewer restrictions and an improved Inspector interface which requires fewer clicks to perform individual tasks.",
+  "author": {
+    "name": "Kailas Dierk",
+    "email": "mail@kybernetik.com.au",
+    "url": "https://kybernetik.com.au"
+  },
+  "documentationUrl": "https://kybernetik.com.au/ultevents",
+  "changelogUrl": "https://kybernetik.com.au/ultevents/docs/changes",
+  "license": "See License.txt",
+  "hideInEditor": false
+}

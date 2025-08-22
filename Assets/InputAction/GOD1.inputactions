@@ -27,15 +27,60 @@
                     "name": "Fire",
                     "type": "Button",
                     "id": "9681ea39-fc44-404d-a1c7-6ad3b8771a6a",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "ShowDebugUI",
+                    "name": "A",
                     "type": "Button",
-                    "id": "bfbff8cc-69c7-4339-8961-b163bf8e7360",
+                    "id": "786c942c-af9b-47f4-9048-61022b111f1a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "D",
+                    "type": "Button",
+                    "id": "8506dc38-0ba0-4811-bc67-3f81aaad3ec7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "E",
+                    "type": "Button",
+                    "id": "6bc4eaf7-f162-43a1-87a6-f0f82e8f1878",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "TestEvent1",
+                    "type": "Button",
+                    "id": "bbad2877-82aa-45c4-87b8-605809363ffb",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "TestEvent2",
+                    "type": "Button",
+                    "id": "66e36355-d943-44f6-a9f7-a4275d3d9eb7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "TestEvent3",
+                    "type": "Button",
+                    "id": "4dd9f12c-1545-4c95-8487-df9a5d7332cb",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -265,23 +310,67 @@
                 },
                 {
                     "name": "",
-                    "id": "d232f4c1-0a5a-4e68-a1fe-0884d0fb05c4",
-                    "path": "<Keyboard>/f8",
+                    "id": "c8ad5d5b-14ae-47d3-b8cb-d9f282e244bc",
+                    "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "ShowDebugUI",
+                    "action": "A",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "08ba8076-cbc2-4146-a3f2-40480cbfcb4e",
-                    "path": "<Touchscreen>/touch*/Press",
-                    "interactions": "Hold",
+                    "id": "251d3d16-ba4f-489b-b67e-8d88bdfd28c1",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
                     "processors": "",
-                    "groups": ";Touch;Keyboard&Mouse",
-                    "action": "ShowDebugUI",
+                    "groups": "",
+                    "action": "D",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0898e882-1840-4224-a33a-60d10a934c4c",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "E",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3f21492b-06e5-4ca7-ac57-d21658bd0a95",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TestEvent1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3d98ceac-4345-4343-a3bd-6eef4b3fe2da",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TestEvent2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "720d0a5d-175a-479b-9c47-686684070a56",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TestEvent3",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -377,6 +466,15 @@
                     "type": "PassThrough",
                     "id": "ffcb5d30-5e5a-4549-aac5-15d0c2633c66",
                     "expectedControlType": "Quaternion",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ShowDebugUI",
+                    "type": "Button",
+                    "id": "e7960fd6-a5c7-4579-a057-f03e20a6ef8f",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -798,6 +896,28 @@
                     "processors": "",
                     "groups": "XR",
                     "action": "TrackedDeviceOrientation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "10cfe86a-c817-4cd6-b238-de737d3f1a3a",
+                    "path": "<Keyboard>/f8",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShowDebugUI",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "606caba9-ea6b-41bb-a356-14af17c70b01",
+                    "path": "<Touchscreen>/touch*/Press",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": ";Touch;Keyboard&Mouse",
+                    "action": "ShowDebugUI",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

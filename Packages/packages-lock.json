@@ -7,6 +7,12 @@
       "dependencies": {},
       "url": "https://package.openupm.com"
     },
+    "com.kybernetik.ultevents": {
+      "version": "file:com.kybernetik.ultevents",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.taptap.sdk.compliance": {
       "version": "4.8.1-beta.1",
       "depth": 0,

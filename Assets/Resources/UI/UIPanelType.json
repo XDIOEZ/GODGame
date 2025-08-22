@@ -1,0 +1,9 @@
+{
+"infoList":
+[
+{"panelTypeString":"MainScene",
+"path":"UI/MainScene/MainUI"},
+{"panelTypeString":"SecendView",
+"path":"UI/View/SecendPanel"}
+]
+}

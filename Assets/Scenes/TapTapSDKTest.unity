@@ -452,8 +452,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea20215a81ffe19468616584b16d49a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerInput: {fileID: 790278092}
-  actionName: ShowDebugUI
+  floatSize: 72
+  expandedWidthRatio: 0.82
+  expandedHeightRatio: 0.48
+  titleBarHeight: 28
+  startExpanded: 0
+  lineSpacing: 2
+  fontSize: 28
 --- !u!114 &790278092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -938,6 +943,7 @@ GameObject:
   - component: {fileID: 1723807913}
   - component: {fileID: 1723807915}
   - component: {fileID: 1723807916}
+  - component: {fileID: 1723807917}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1001,6 +1007,22 @@ MonoBehaviour:
   bannerOffsetInput: {fileID: 0}
   LoadVideo: {fileID: 1748135160}
   playVideo: {fileID: 0}
+--- !u!114 &1723807917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1723807912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca0a819ab73b0414795ca303cfceb71b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInput: {fileID: 790278092}
+  actionNameOne: TestEvent1
+  actionNameTwo: TestEvent2
+  actionNameThree: TestEvent3
 --- !u!1 &1748135158
 GameObject:
   m_ObjectHideFlags: 0
