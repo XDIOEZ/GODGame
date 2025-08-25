@@ -176,7 +176,7 @@ MonoBehaviour:
   checkRadius: 1
   targetLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
   isSphere: 0
   scaleSpeed: 0.1
   scaleAxis: {x: 1, y: 1, z: 1}

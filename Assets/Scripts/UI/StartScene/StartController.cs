@@ -29,13 +29,15 @@ public class StartController : MonoBehaviour
     {
         Debug.Log("Continue Game button clicked");
         // Add logic to continue the game
+        //测试后续删除
+        UnityEngine.SceneManagement.SceneManager.LoadScene("UI面板测试");
     }
     public void OnNewGame()
     {
         Debug.Log("New Game button clicked");
         // Add logic to start a new game
         //跳转到游戏场景
-        UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("飞船控制器");
     }
     public void OnQuitGame()
     {

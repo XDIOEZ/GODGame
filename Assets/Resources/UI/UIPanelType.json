@@ -4,6 +4,8 @@
 {"panelTypeString":"MainScene",
 "path":"UI/MainScene/MainUI"},
 {"panelTypeString":"SecendView",
-"path":"UI/View/SecendPanel"}
+"path":"UI/View/SecendPanel"},
+{"panelTypeString":"StartScene",
+"path":"UI/MainScene/StartScene"}
 ]
 }

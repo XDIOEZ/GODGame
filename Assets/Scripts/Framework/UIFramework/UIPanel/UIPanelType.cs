@@ -5,5 +5,6 @@ using System;
 
 public enum UIPanelType  {
     MainScene,
-    SecendView
+    SecendView,
+    StartScene
 }
