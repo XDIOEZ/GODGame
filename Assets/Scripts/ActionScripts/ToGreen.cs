@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class ToGreen : MonoBehaviour
+public class ToGreen : InteractBase
 {
     public SpriteRenderer spriteRenderer;
     public Color targetColor = Color.green; // 默认目标颜色为绿色
@@ -9,7 +9,8 @@ public class ToGreen : MonoBehaviour
 
     private Coroutine colorCoroutine;
 
-    public void Action(Interacter interacter)
+
+    public override void Action(Interacter interacter)
     {
         // 如果上一次渐变还在进行，先停止
         if (colorCoroutine != null)

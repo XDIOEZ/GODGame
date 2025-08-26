@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class InteractReciver : MonoBehaviour
 {
-    public UltEvent<Interacter> onInteractEvent_Start;
+    public UltEvent<Interacter> onInteractEvent_Start = new UltEvent<Interacter>();
+
     // Start is called before the first frame update
-   
     public void Interact(Interacter interacter)
     {
       //  Debug.Log("Interact");
