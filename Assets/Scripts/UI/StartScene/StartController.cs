@@ -1,3 +1,4 @@
+using DG.Tweening.Core.Easing;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -30,19 +31,18 @@ public class StartController : MonoBehaviour
         Debug.Log("Continue Game button clicked");
         // Add logic to continue the game
         //测试后续删除
-        UnityEngine.SceneManagement.SceneManager.LoadScene("UI面板测试");
+        GameManager.Instance.ContinueGame();
     }
     public void OnNewGame()
     {
         Debug.Log("New Game button clicked");
         // Add logic to start a new game
         //跳转到游戏场景
-        UnityEngine.SceneManagement.SceneManager.LoadScene("飞船控制器");
+        GameManager.Instance.StartNewGame();
     }
     public void OnQuitGame()
     {
         Debug.Log("Quit Game button clicked");
         // Add logic to quit the game
-        Application.Quit();
     }
 }
