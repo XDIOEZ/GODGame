@@ -1,11 +1,24 @@
 {
-"infoList":
-[
-{"panelTypeString":"MainScene",
-"path":"UI/MainScene/MainUI"},
-{"panelTypeString":"SecendView",
-"path":"UI/View/SecendPanel"},
-{"panelTypeString":"StartScene",
-"path":"UI/MainScene/StartScene"}
-]
+  "infoList": [
+    {
+      "panelTypeString": "MainScene",
+      "path": "UI/MainScene/MainUI"
+    },
+    {
+      "panelTypeString": "SecendView",
+      "path": "UI/View/SecendPanel"
+    },
+    {
+      "panelTypeString": "StartScene",
+      "path": "UI/MainScene/StartScene"
+    },
+    {
+      "panelTypeString": "RocketChangeScene",
+      "path": "UI/MainScene/RocketChangeScene"
+    },
+    {
+      "panelTypeString": "RocketValuesView",
+      "path": "UI/MainScene/RocketValuesView"
+    }
+  ]
 }
