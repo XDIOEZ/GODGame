@@ -29,4 +29,5 @@ public class StartSceneUI : BasePanel
     {
         this.DestroySelf();
     }
+
 }

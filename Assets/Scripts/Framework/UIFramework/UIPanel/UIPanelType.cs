@@ -6,5 +6,7 @@ using System;
 public enum UIPanelType  {
     MainScene,
     SecendView,
-    StartScene
+    StartScene,
+    RocketChangeScene,
+    RocketValuesView
 }
