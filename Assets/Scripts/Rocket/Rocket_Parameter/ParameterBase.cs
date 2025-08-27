@@ -12,6 +12,7 @@ public enum ParameterType
     Thrust,
     Steeringspeed
 }
+[System.Serializable]
 public class ParameterBase : MonoBehaviour
 {
     public int ID;

@@ -2,7 +2,7 @@ using UnityEngine;
 
 
 /// <summary>
-/// 玩家死亡事件
+/// 玩家死亡事件--举例
 /// </summary>
 public class PlayerDeathEvent : IEvent
 {
@@ -19,7 +19,7 @@ public class PlayerDeathEvent : IEvent
 }
 
 /// <summary>
-/// 道具拾取事件
+/// 道具拾取事件——举例
 /// </summary>
 public class ItemPickupEvent : IEvent
 {
@@ -34,3 +34,22 @@ public class ItemPickupEvent : IEvent
         PickupPosition = position;
     }
 }
+
+
+/// <summary>
+/// 重力系数
+/// </summary>
+
+//public class FallingspeedEvent : IEvent
+//{
+//    public int PlayerId; // 玩家ID
+//    public string DeathReason; // 死亡原因
+//    public float DeathTime; // 死亡时间（秒）
+
+//    public FallingspeedEvent(int playerId, string deathReason, float deathTime)
+//    {
+//        PlayerId = playerId;
+//        DeathReason = deathReason;
+//        DeathTime = deathTime;
+//    }
+//}

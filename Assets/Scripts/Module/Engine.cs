@@ -7,11 +7,28 @@ public class Engine : MonoBehaviour
 {
     public enum EngineType { Left, Right }
 
+    [Header("重力系数参数")]
+    public ParameterFallingspeed fallingspeed;
+
+    [Header("推力参数")]
+    public ParameterEngine Thrust;
+
+    [Header("推力参数key名")]
+    public string ThrustKey;
+    [Header("当前取key推力参数")]
+    public ThrustData CurrentTrustData ;
+
     [Header("引用")]
     public PlayerController controller; // Inspector 里拖 PlayerController
     public Button engineButton;         // 每个引擎对应一个按钮
     public Rigidbody2D rb;
     public GameObject engineParticles;
+
+    [Header("当前剩余燃料")]
+    public ParameterFuel Fuel;
+
+    [Header("当前所处重力")]
+    private float FallingSpeed=1;
 
     [Header("推进设置")]
     public float thrustForce = 5f;      // 单个引擎推力
@@ -27,6 +44,8 @@ public class Engine : MonoBehaviour
 
     private void Awake()
     {
+        FallingSpeed = fallingspeed.Fallingspeed;
+
         if (rb == null && controller != null)
             rb = controller.rb;
 
@@ -61,17 +80,57 @@ public class Engine : MonoBehaviour
 
         if (!engineActive) return;
 
+        if (Fuel.fuel<=0)
+            return;
+        if (Fuel.fuel < 100)
+        {
+            EventManager.Instance.Emit(new ParameterFallingspeed(FallSpeed: 3));
+            FallingSpeed = fallingspeed.Fallingspeed;
+        }
         // 帧率无关的推力和扭矩
         float delta = Time.deltaTime; // 当前帧时间间隔
+        Fuel.fuel -= (Time.deltaTime *Fuel.FuelCoefficient);
 
         // 推力
-        rb.AddForce(transform.up * thrustForce * delta, ForceMode2D.Force);
+        rb.AddForce(transform.up * (thrustForce)/FallingSpeed * delta, ForceMode2D.Force);
 
         // 扭矩
         float torque = (engineType == EngineType.Left ? -torqueForce : torqueForce) * delta;
         rb.AddTorque(torque, ForceMode2D.Force);
     }
 
+    private void OnValidate()
+    {
+        // 校验依赖是否存在
+        if (Thrust == null)
+        {
+            CurrentTrustData = default; // 清空当前数据
+            return;
+        }
+
+        // 当key为空时清空当前数据
+        if (string.IsNullOrEmpty(ThrustKey))
+        {
+            CurrentTrustData = default;
+            return;
+        }
+
+        // 从字典中查询key对应的ThrustData并赋值
+        if (Thrust.TryGetThrustData(ThrustKey, out ThrustData data))
+        {
+            CurrentTrustData = data;
+            thrustForce = CurrentTrustData.ThrustPower;
+            torqueForce = CurrentTrustData.TorqueForcePower;
+            engineType = CurrentTrustData.EngineType;
+            FallingSpeed = fallingspeed.Fallingspeed;
+        }
+        else
+        {
+            // 若key不存在，清空数据并提示
+            CurrentTrustData = default;
+            Debug.LogWarning($"推力参数中不存在key：{ThrustKey}");
+        }
+    }
 
 
     private void AddButtonEvents(Button button, System.Action onDown, System.Action onUp)

@@ -7,6 +7,6 @@ public class ToBigger : InteractBase
 
     public override void Action(Interacter interacter)
     {
-        interacter.owner.transform.localScale *= 1.1f; // 放大1.1倍
+        interacter.owner.transform.localScale *= 2.1f; // 放大1.1倍
     }
 }

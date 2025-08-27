@@ -46,3 +46,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 0
   type: 4
+  thrustGroup:
+    keys:
+    - 001
+    - 002
+    values:
+    - thrustID: 1
+      thrustName: "\u524D\u8FDB\u4E00"
+      engineType: 0
+      thrustPower: 1000
+      torqueForcePower: 100
+    - thrustID: 2
+      thrustName: "\u524D\u8FDB2"
+      engineType: 1
+      thrustPower: 1000
+      torqueForcePower: 150
