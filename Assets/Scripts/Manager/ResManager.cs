@@ -8,7 +8,7 @@ using UnityEngine;
 public class ResManager : SingletonAutoMono<ResManager>
 {
     [Header("统一的 Addressables 标签")]
-    public List<string> ADBLabels = new List<string> { "Prefab", "TileBase" };
+    public List<string> ADBLabels = new List<string> { "Prefab" };
 
     [ShowInInspector]
     public Dictionary<string, GameObject> AllPrefabs = new();
@@ -31,12 +31,12 @@ public class ResManager : SingletonAutoMono<ResManager>
 
         if (ADBLabels == null || ADBLabels.Count == 0)
         {
-            ADBLabels = new List<string> { "Prefab", "TileBase" };
+            ADBLabels = new List<string> { "Prefab" };
         }
 
         // 加载所有资源类型
         SyncLoadAssetsByLabels<GameObject>(ADBLabels, AllPrefabs);
-        SyncLoadAssetsByLabels<TileBase>(ADBLabels, tileBaseDict);
+      //  SyncLoadAssetsByLabels<TileBase>(ADBLabels, tileBaseDict);
 
         isLoadFinish = true;
         // Debug.Log($"资源加载完成，共加载 {LoadedCount} 个资源");

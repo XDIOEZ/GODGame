@@ -31,5 +31,6 @@ EditorBuildSettings:
     com.unity.adaptiveperformance.oppo.android.provider_settings: {fileID: 11400000, guid: 3856acbf5b51dc447a83f312d5a60a40, type: 2}
     com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: f7af54be76cf4a24198ae01171709720, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 617e76f24659dde43a0133dcf032408a, type: 2}
+    com.unity.addressableassets: {fileID: 11400000, guid: 727ed9738270d2441844e7dfa11bdb14, type: 2}
     com.unity.input.settings: {fileID: 11400000, guid: e77b05c40b733e34dbef567344f29556, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 391f90f496d40394d8c2e40c1210a92a, type: 3}

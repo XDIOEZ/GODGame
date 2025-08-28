@@ -3,7 +3,24 @@ using UnityEngine;
 public class GameManager : SingletonAutoMono<GameManager>
 {
     [Header("玩家引用")]
-    public Player player;  // 玩家对象引用
+    private Player player;  // 玩家对象引用
+
+    public Player Player
+    {
+        get
+        {
+            if (player == null)
+            {
+                player = FindObjectOfType<Player>();
+            }
+            return player;
+        }
+
+        set
+        {
+            player = value;
+        }
+    }
 
     private new void Awake()
     {
