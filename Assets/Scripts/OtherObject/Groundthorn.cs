@@ -29,7 +29,6 @@ public class Groundthorn : MonoBehaviour
     // 碰撞检测：通过Layer判断接触（已修正）
     private void OnCollisionStay2D(Collision2D other)
     {
-        Debug.Log("持续碰撞中..."); // 新增这行
         // 检查碰撞物体是否在目标图层中
         if (((1 << other.gameObject.layer) & targetLayer) != 0)
         {
@@ -72,7 +71,6 @@ public class Groundthorn : MonoBehaviour
         _cooldownTimerId = TimerManager.Instance.AddTimer(damageCooldown, () =>
         {
             Debug.Log("计时器回调触发！当前时间：" + Time.time); // 新增这行，确保独立执行
-            Debug.Log("秒延迟结束，执行逻辑！");
             _isInCooldown = false;
             _cooldownTimerId = null; // 清空ID，避免残留
             // 可在这里写：播放动画、发送网络请求、刷新 UI 等

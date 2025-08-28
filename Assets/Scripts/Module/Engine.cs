@@ -34,6 +34,12 @@ public class Engine : MonoBehaviour
     public float thrustForce = 5f;      // 单个引擎推力
     public float torqueForce = 5f;
 
+    //基础重力值
+    private float gravityForce = 200;
+
+    public float stabilizationFactor = 0f; // 回正系数（越大回正越快，建议从1-5调试）
+    public float maxStabilizationTorque = 10f; // 最大回正扭矩（避免过度修正）
+
     [Header("引擎类型")]
     public EngineType engineType;
 
@@ -45,6 +51,7 @@ public class Engine : MonoBehaviour
     private void Awake()
     {
         FallingSpeed = fallingspeed.Fallingspeed;
+        stabilizationFactor = fallingspeed.ReturnCoefficient;
 
         if (rb == null && controller != null)
             rb = controller.rb;
@@ -74,6 +81,7 @@ public class Engine : MonoBehaviour
 
     private void Update()
     {
+        SimulationGravity();
         // 粒子控制
         if (engineParticles != null)
             engineParticles.SetActive(engineActive);
@@ -82,21 +90,30 @@ public class Engine : MonoBehaviour
 
         if (Fuel.fuel<=0)
             return;
+
+        //测试用，后期必删↓
         if (Fuel.fuel < 100)
         {
             EventManager.Instance.Emit(new ParameterFallingspeed(FallSpeed: 3));
             FallingSpeed = fallingspeed.Fallingspeed;
         }
+        //测试用，后期必删↑
+
         // 帧率无关的推力和扭矩
         float delta = Time.deltaTime; // 当前帧时间间隔
         Fuel.fuel -= (Time.deltaTime *Fuel.FuelCoefficient);
 
         // 推力
-        rb.AddForce(transform.up * (thrustForce)/FallingSpeed * delta, ForceMode2D.Force);
+        rb.AddForce(transform.up * (thrustForce) * delta, ForceMode2D.Force);
 
         // 扭矩
         float torque = (engineType == EngineType.Left ? -torqueForce : torqueForce) * delta;
         rb.AddTorque(torque, ForceMode2D.Force);
+    }
+
+    private void FixedUpdate()
+    {
+        StabilizeDirection();
     }
 
     private void OnValidate()
@@ -154,5 +171,34 @@ public class Engine : MonoBehaviour
         var entryExit = new EventTrigger.Entry { eventID = EventTriggerType.PointerExit };
         entryExit.callback.AddListener((_) => onUp());
         trigger.triggers.Add(entryExit);
+    }
+
+
+    //模拟重力作用方法(下坠速度——重力系数专用)
+    private void SimulationGravity()
+    {
+        FallingSpeed = fallingspeed.Fallingspeed;
+        float delta = Time.deltaTime; // 当前帧时间间隔
+        rb.AddForce(Vector2.down * (gravityForce) * delta*FallingSpeed, ForceMode2D.Force);
+    }
+
+    // 方向稳定逻辑：让火箭慢慢回正到向上方向
+    private void StabilizeDirection()
+    {
+        // 1. 获取当前火箭的朝向（局部上方向）
+        Vector2 currentUp = transform.up;
+
+        // 2. 计算当前朝向与世界向上方向（Vector2.up）的夹角（角度制，-180~180）
+        float angleToUp = Vector2.SignedAngle(-currentUp, Vector2.up);
+
+        // 3. 根据夹角计算修正扭矩：角度差越大，修正力越强（乘以回正系数）
+        stabilizationFactor = fallingspeed.ReturnCoefficient;
+        float correctionTorque = angleToUp * stabilizationFactor;
+
+        // 4. 限制最大扭矩，避免回正过猛（可选，但建议加）
+        correctionTorque = Mathf.Clamp(correctionTorque, -maxStabilizationTorque, maxStabilizationTorque);
+
+        // 5. 施加修正扭矩（注意：扭矩方向与角度差相反，才能回正）
+        rb.AddTorque(-correctionTorque * Time.fixedDeltaTime, ForceMode2D.Force);
     }
 }

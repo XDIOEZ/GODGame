@@ -10,7 +10,8 @@ public enum ParameterType
     Materials,
     ShipDurability,
     Thrust,
-    Steeringspeed
+    Steeringspeed,
+    ParameterParts
 }
 [System.Serializable]
 public class ParameterBase : MonoBehaviour

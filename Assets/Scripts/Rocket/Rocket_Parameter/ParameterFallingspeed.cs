@@ -9,13 +9,24 @@ public class ParameterFallingspeed : ParameterBase,IEvent
     [SerializeField]
     private float fallingspeed=10;
 
+    [Header("回正系数")]
+    [SerializeField]
+    private float returnCoefficient = 1;
+
 
     public float Fallingspeed => fallingspeed;
-    public ParameterFallingspeed(float FallSpeed)
+
+    public float ReturnCoefficient => returnCoefficient;
+
+
+
+    public ParameterFallingspeed(float FallSpeed=1, float returnCff =1)
     {
         fallingspeed = FallSpeed;
+        returnCoefficient = returnCff;
 
     }
+
     private void OnEnable()
     {
         EventManager.Instance.On<ParameterFallingspeed>(CurrentFallingChange);
@@ -31,6 +42,7 @@ public class ParameterFallingspeed : ParameterBase,IEvent
     private void CurrentFallingChange(ParameterFallingspeed evt)
     {
         fallingspeed = evt.fallingspeed;
+        returnCoefficient = evt.returnCoefficient;
         Debug.Log($"飞船当前所处重力：{evt.fallingspeed}");
         // 实际项目中可在这里处理UI提示、音效播放、任务更新等逻辑
     }

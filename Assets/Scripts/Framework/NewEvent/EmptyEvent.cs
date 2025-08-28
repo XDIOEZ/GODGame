@@ -19,7 +19,10 @@ public class RefreshPageEvent : EmptyEvent
     // 继承自EmptyEvent，无需额外参数
 }
 
+
 public class EmptyEventOne : EmptyEvent { }
 public class EmptyEventTwo : EmptyEvent { }
 public class EmptyEventThree : EmptyEvent { }
-public class EmptyEventFour : EmptyEvent { }
+
+
+public class ParameterPartsTouchEvent : EmptyEvent { }
