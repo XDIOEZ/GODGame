@@ -16,7 +16,7 @@ public class ParameterShipDurability : ParameterBase,IEvent
     public GameObject shipPlayer;
 
     public float Durability => durability;
-
+    public int MaxDurability => maxDurability;
     public ParameterShipDurability(int Durability)
     {
         durability = Durability;
@@ -59,5 +59,9 @@ public class ParameterShipDurability : ParameterBase,IEvent
     private void DestroySelf()
     {
         Destroy(shipPlayer.gameObject);
+    }
+    public void AddDurability(int newDurability)
+    {
+        durability = newDurability;
     }
 }

@@ -23,7 +23,8 @@ public class RocketChangeSceneController : BasePanel
         DrawLines();
         backButton.onClick.AddListener(() =>
         {
-           this.DestroySelf();
+           this.OnExit();
+            print("返回按钮被点击");
         });
     }
 
@@ -56,8 +57,5 @@ public class RocketChangeSceneController : BasePanel
     {
         DrawLines();
     }
-    public override void OnExit()
-    {
-        base.OnExit();
-    }
+    
 }

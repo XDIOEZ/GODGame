@@ -703,6 +703,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 4575829207755387501}
     m_Modifications:
     - target: {fileID: 2380268205723966717, guid: c70d967038d039444a5be44f6f703be7, type: 3}
+      propertyPath: durability
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2380268205723966717, guid: c70d967038d039444a5be44f6f703be7, type: 3}
       propertyPath: shipPlayer
       value: 
       objectReference: {fileID: 2568629491594972623}

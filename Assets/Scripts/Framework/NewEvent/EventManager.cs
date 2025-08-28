@@ -121,4 +121,9 @@ public class EventManager : MonoBehaviour
         }
         Debug.Log("所有事件监听已清除");
     }
+
+    internal void Trigger(ParameterShipDurability parameterShipDurability)
+    {
+        throw new NotImplementedException();
+    }
 }
