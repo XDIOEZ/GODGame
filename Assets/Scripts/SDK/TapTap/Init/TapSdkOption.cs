@@ -37,7 +37,10 @@ public class TaptapInit : MonoBehaviour
 
         TapTapSDK.Init(coreOptions, otherOptions);
         RegisterComplianceCallback();
+        EventManager.Instance.Emit(new EmptyEventTaptapLogin());
     }
+
+
 
     // Update is called once per frame
     void Update()

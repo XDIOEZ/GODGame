@@ -20,7 +20,10 @@ public class RefreshPageEvent : EmptyEvent
 }
 
 
-public class EmptyEventOne : EmptyEvent { }
+/// <summary>
+/// taptapµÇÂ¼×¨ÓÃ
+/// </summary>
+public class EmptyEventTaptapLogin : EmptyEvent { }
 public class EmptyEventTwo : EmptyEvent { }
 public class EmptyEventThree : EmptyEvent { }
 

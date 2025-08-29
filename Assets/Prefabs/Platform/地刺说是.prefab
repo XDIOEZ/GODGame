@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6137220564132457356}
   - component: {fileID: 2201376722420865210}
   - component: {fileID: 4570112134086173475}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: "\u5730\u523A\u8BF4\u662F"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,6 +176,7 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 64
+  damageCooldown: 1
 --- !u!1 &7267805132277795696
 GameObject:
   m_ObjectHideFlags: 0
@@ -187,7 +188,7 @@ GameObject:
   - component: {fileID: 7969304359516132642}
   - component: {fileID: 8703077514361809088}
   - component: {fileID: 6614220775111026654}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tip
   m_TagString: Untagged
   m_Icon: {fileID: 0}

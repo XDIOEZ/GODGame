@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3917764841537152286}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: pointB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3735736915615535626}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: "\u79FB\u52A8\u5E73\u53F0"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,7 +79,7 @@ GameObject:
   - component: {fileID: 3046917867879992782}
   - component: {fileID: 2625238998353861177}
   - component: {fileID: 6294637472221287734}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: "\u5E73\u53F0"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -255,7 +255,7 @@ GameObject:
   - component: {fileID: 991752793451556854}
   - component: {fileID: 1327732845473914077}
   - component: {fileID: 1553162941393665519}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Tip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -350,7 +350,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7042052896036799024}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: pointA
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -23,18 +23,28 @@ public class TaptapLogin : MonoBehaviour
 
     private void Awake()
     {
-        OnLoginbutton = GameObject.Find("OnLoginbutton").GetComponent<Button>();
+        //OnLoginbutton = GameObject.Find("OnLoginbutton").GetComponent<Button>();
 
-        LogOutbutton = GameObject.Find("LogOutbutton").GetComponent<Button>();
+        //LogOutbutton = GameObject.Find("LogOutbutton").GetComponent<Button>();
 
-        OnLoginbutton.onClick.AddListener(OnLoginButton);
+        //OnLoginbutton.onClick.AddListener(OnLoginButton);
 
-        LogOutbutton.onClick.AddListener(OnLogOutButton);
+        //LogOutbutton.onClick.AddListener(OnLogOutButton);
 
     }
 
     void Start()
     {
+    }
+
+    private void OnEnable()
+    {
+        EventManager.Instance.On<EmptyEventTaptapLogin>(OnLoginButton);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.Instance.Off<EmptyEventTaptapLogin>(OnLoginButton);
     }
 
     // Update is called once per frame
@@ -46,7 +56,7 @@ public class TaptapLogin : MonoBehaviour
 
     
 
-    private void OnLoginButton()
+    private void OnLoginButton(EmptyEventTaptapLogin evt)
     {
        var i_0 = CheckLoginStatus();
     }
