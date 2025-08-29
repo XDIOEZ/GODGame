@@ -38,7 +38,7 @@ public class Engine : MonoBehaviour
     private float gravityForce = 200;
 
     public float stabilizationFactor = 0f; // 回正系数（越大回正越快，建议从1-5调试）
-    public float maxStabilizationTorque = 10f; // 最大回正扭矩（避免过度修正）
+    public float maxStabilizationTorque; // 最大回正扭矩（避免过度修正）
 
     [Header("引擎类型")]
     public EngineType engineType;
@@ -52,6 +52,7 @@ public class Engine : MonoBehaviour
     {
         FallingSpeed = fallingspeed.Fallingspeed;
         stabilizationFactor = fallingspeed.ReturnCoefficient;
+        maxStabilizationTorque = fallingspeed.ReturnCoefficient;
 
         if (rb == null && controller != null)
             rb = controller.rb;
@@ -92,11 +93,11 @@ public class Engine : MonoBehaviour
             return;
 
         //测试用，后期必删↓
-        if (Fuel.fuel < 100)
-        {
-            EventManager.Instance.Emit(new ParameterFallingspeed(FallSpeed: 3));
-            FallingSpeed = fallingspeed.Fallingspeed;
-        }
+        //if (Fuel.fuel < 100)
+        //{
+        //    EventManager.Instance.Emit(new ParameterFallingspeed(FallSpeed: 3));
+        //    FallingSpeed = fallingspeed.Fallingspeed;
+        //}
         //测试用，后期必删↑
 
         // 帧率无关的推力和扭矩
@@ -193,7 +194,7 @@ public class Engine : MonoBehaviour
 
         // 3. 根据夹角计算修正扭矩：角度差越大，修正力越强（乘以回正系数）
         stabilizationFactor = fallingspeed.ReturnCoefficient;
-        float correctionTorque = angleToUp * stabilizationFactor;
+        float correctionTorque = angleToUp * stabilizationFactor*0.01f;
 
         // 4. 限制最大扭矩，避免回正过猛（可选，但建议加）
         correctionTorque = Mathf.Clamp(correctionTorque, -maxStabilizationTorque, maxStabilizationTorque);

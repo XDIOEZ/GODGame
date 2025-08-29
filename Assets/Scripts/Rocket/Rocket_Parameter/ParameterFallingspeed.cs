@@ -9,14 +9,19 @@ public class ParameterFallingspeed : ParameterBase,IEvent
     [SerializeField]
     private float fallingspeed=10;
 
-    [Header("回正系数")]
+    [Header("当前回正系数")]
     [SerializeField]
     private float returnCoefficient = 1;
 
-
+    [Header("当前最大修正扭矩")]
+    [Tooltip("最大不能超过一百八十度，最好控制在九十度")]
+    [SerializeField]
+    public float maxStabilizationTorque = 10f; // 最大回正扭矩（避免过度修正）
     public float Fallingspeed => fallingspeed;
 
     public float ReturnCoefficient => returnCoefficient;
+
+    public float MaxStabilizationTorque => maxStabilizationTorque;
 
 
 
