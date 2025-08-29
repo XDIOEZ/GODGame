@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class RocketChangeSceneController : BasePanel
-{           
+{
     public Button backButton;
     [Header("自定义射线发射点（与目标数量一致）")]
     public List<Transform> raycastOrigins;
@@ -17,13 +17,20 @@ public class RocketChangeSceneController : BasePanel
     public LineRenderer linePrefab;
 
     private List<LineRenderer> lines = new List<LineRenderer>();
+    private float previousTimeScale = 1f;
 
     void Start()
     {
+        // 暂停游戏时间
+        previousTimeScale = Time.timeScale;
+        Time.timeScale = 0f;
+
         DrawLines();
         backButton.onClick.AddListener(() =>
         {
-           this.OnExit();
+            // 恢复游戏时间
+            Time.timeScale = previousTimeScale;
+            this.OnExit();
             print("返回按钮被点击");
         });
     }
@@ -57,5 +64,4 @@ public class RocketChangeSceneController : BasePanel
     {
         DrawLines();
     }
-    
 }
