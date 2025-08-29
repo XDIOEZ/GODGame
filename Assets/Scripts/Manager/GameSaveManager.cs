@@ -8,6 +8,12 @@ public class GameSaveManager : SingletonAutoMono<GameSaveManager>
 {
     [Header("当前存档名称(默认是玩家的名字)")]
     public string SaveName;
+
+    public void Start()
+    {
+        Checkpoint.CurrentActiveCheckpointName = "默认检查点";
+    }
+
     #region 存档点数据
 
     [Button("加载存档点数据")]

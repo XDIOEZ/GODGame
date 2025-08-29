@@ -15,12 +15,19 @@ public class GameManager : SingletonAutoMono<GameManager>
             }
             return player;
         }
-
         set
         {
             player = value;
         }
     }
+
+    [Header("场景配置")]
+    [Tooltip("新游戏的场景名称")]
+    [SerializeField] private string startGameScene = "飞船控制器";
+    [Tooltip("继续游戏的场景名称")]
+    [SerializeField] private string continueGameScene = "飞船控制器";
+    [Tooltip("暂停时切换的场景名称")]
+    [SerializeField] private string pauseGameScene = "UI面板测试";
 
     private new void Awake()
     {
@@ -34,28 +41,25 @@ public class GameManager : SingletonAutoMono<GameManager>
     public void StartNewGame()
     {
         Debug.Log("游戏开始！");
-        // 还可以初始化关卡、重置分数等
-         UnityEngine.SceneManagement.SceneManager.LoadScene("飞船控制器");
-        
+        UnityEngine.SceneManagement.SceneManager.LoadScene(startGameScene);
     }
+
     /// <summary>
     /// 继续游戏
     /// </summary>
     public void ContinueGame()
     {
-        Debug.Log("游戏开始！");
-        // 还可以初始化关卡、重置分数等
-        UnityEngine.SceneManagement.SceneManager.LoadScene("飞船控制器");
-
+        Debug.Log("继续游戏！");
+        UnityEngine.SceneManagement.SceneManager.LoadScene(continueGameScene);
     }
-
 
     /// <summary>
     /// 暂停/继续游戏
     /// </summary>
     public void PauseGame(bool continueGame)
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("UI面板测试");
+        Debug.Log("切换到暂停场景！");
+        UnityEngine.SceneManagement.SceneManager.LoadScene(pauseGameScene);
     }
 
     /// <summary>

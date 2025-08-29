@@ -12,8 +12,10 @@ public class Checkpoint : InteractBase
     public static Dictionary<string, Checkpoint> IsRun_Checkpoints_Dictionary=new Dictionary<string, Checkpoint>();
     [Header("新增的Checkpoint数据")]
     public static Dictionary<string, CheckpointData> NewCheckpointData = new Dictionary<string, CheckpointData>();
+  
     [Header("当前激活的Checkpoint的名字,也就是玩家的复活点")]
-    public static string CurrentActiveCheckpointName;
+    [ShowInInspector]
+    public static string CurrentActiveCheckpointName = "默认检查点";
     #endregion
     #region 对象参数
     [Header("当前Checkpoint数据")]
@@ -61,6 +63,7 @@ public class Checkpoint : InteractBase
         player.transform.position += new Vector3(1, 0, 0);
         player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         player.GetComponent<Rigidbody2D>().angularVelocity = 0;
+        player.transform.rotation = Quaternion.Euler(0, 0, 0);
     }
     [Tooltip("回到当前激活的Checkpoint")]
     public static void BackToCurrentActiveCheckpoint(GameObject player)
