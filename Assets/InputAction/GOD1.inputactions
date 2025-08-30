@@ -889,17 +889,6 @@
                     "action": "ShowDebugUI",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "606caba9-ea6b-41bb-a356-14af17c70b01",
-                    "path": "<Touchscreen>/touch*/Press",
-                    "interactions": "Hold",
-                    "processors": "",
-                    "groups": ";Touch;Keyboard&Mouse",
-                    "action": "ShowDebugUI",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 }
             ]
         }

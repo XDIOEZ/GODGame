@@ -230,6 +230,7 @@ GameObject:
   - component: {fileID: 3783243382233601815}
   - component: {fileID: 2879353577029242950}
   - component: {fileID: 377164260278669016}
+  - component: {fileID: 5297669502813273596}
   m_Layer: 0
   m_Name: "UI\u4EA4\u4E92\u9762\u677F (1)"
   m_TagString: Untagged
@@ -320,6 +321,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 55
+--- !u!114 &5297669502813273596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7037066843834364355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60e13c81656d67d4bb49d851b2e41c3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7104770376899395988
 GameObject:
   m_ObjectHideFlags: 0
@@ -541,12 +554,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 787f2a9eddb12fc46adcc703a9fb7eb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fallingspeed: {fileID: 0}
+  Thrust: {fileID: 0}
+  ThrustKey: 
+  CurrentTrustData:
+    thrustID: 0
+    thrustName: 
+    engineType: 0
+    thrustPower: 0
+    torqueForcePower: 0
   controller: {fileID: 0}
   engineButton: {fileID: 7930589835859880616}
   rb: {fileID: 0}
   engineParticles: {fileID: 2568257487116609919}
+  Fuel: {fileID: 0}
   thrustForce: 1000
   torqueForce: 200
+  stabilizationFactor: 0
+  maxStabilizationTorque: 0
   engineType: 1
   inputActionName: D
 --- !u!61 &8917443171296012020
