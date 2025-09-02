@@ -36,14 +36,6 @@ public class Groundthorn : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit2D(Collision2D other)
-    {
-        // 检查离开物体是否在目标图层中
-        if (((1 << other.gameObject.layer) & targetLayer) != 0)
-        {
-        }
-    }
-
     private void OnDisable()
     {
 

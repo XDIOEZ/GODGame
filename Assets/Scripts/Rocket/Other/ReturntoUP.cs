@@ -60,11 +60,11 @@ public class ReturntoUP : MonoBehaviour
 
     private void CheckTimerReturn()
     {
-        Debug.Log(PlayerTransform.eulerAngles.z);
+        //Debug.Log(PlayerTransform.eulerAngles.z);
 
         if (Mathf.Abs(PlayerTransform.eulerAngles.z) > retrunAngle)
         {
-            Debug.Log("是否触发——角度");
+            //Debug.Log("是否触发——角度");
             currentRetrunTimer += Time.deltaTime;
         if (currentRetrunTimer >= retrunTimer)
         {

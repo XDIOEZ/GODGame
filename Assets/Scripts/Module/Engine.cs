@@ -89,6 +89,7 @@ public class Engine : MonoBehaviour
 
         if (!engineActive) return;
 
+        //È¼ÁÏºÄ¾¡
         if (Fuel.fuel<=0)
             return;
 
@@ -111,7 +112,6 @@ public class Engine : MonoBehaviour
         float torque = (engineType == EngineType.Left ? -torqueForce : torqueForce) * delta;
         rb.AddTorque(torque, ForceMode2D.Force);
     }
-
     private void FixedUpdate()
     {
         StabilizeDirection();

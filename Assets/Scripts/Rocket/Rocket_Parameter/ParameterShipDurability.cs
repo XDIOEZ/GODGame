@@ -58,7 +58,7 @@ public class ParameterShipDurability : ParameterBase,IEvent
 
     private void DestroySelf()
     {
-        Destroy(shipPlayer.gameObject);
+        Checkpoint.BackToCurrentActiveCheckpoint(shipPlayer);
     }
     public void AddDurability(int newDurability)
     {
