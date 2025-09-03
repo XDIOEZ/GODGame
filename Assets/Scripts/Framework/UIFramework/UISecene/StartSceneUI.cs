@@ -49,11 +49,11 @@ public class StartSceneUI : BasePanel
     public void OnQuitGame()
     {
         Debug.Log("Quit Game button clicked");
-        #if UNITY_ANDROID              
-        // Android退回后台
-        AndroidJavaObject activity = new AndroidJavaClass("com.unity3d.player.UnityPlayer").GetStatic<AndroidJavaObject>("currentActivity");
-        #endif
-        activity.Call<bool>("moveTaskToBack", true);
+        //#if UNITY_ANDROID              
+        //// Android退回后台
+        //AndroidJavaObject activity = new AndroidJavaClass("com.unity3d.player.UnityPlayer").GetStatic<AndroidJavaObject>("currentActivity");
+        //#endif
+        //activity.Call<bool>("moveTaskToBack", true);
         Application.Quit();
         // Add logic to quit the game
     }
