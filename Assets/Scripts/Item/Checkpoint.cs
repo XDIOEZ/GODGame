@@ -23,6 +23,10 @@ public class Checkpoint : InteractBase
     #endregion
     #region 组件引用
     public SpriteRenderer spriteRenderer;
+
+    [Header("重生点位置偏移")]
+    [ShowInInspector]
+    public static Vector3 RespawnPositionOffset = new Vector3(1.5f, 0, 0);
     #endregion
 
     public new void Start()
@@ -60,7 +64,7 @@ public class Checkpoint : InteractBase
     public static void BackToCheckPoint(string checkpointName, GameObject player)
     {
         player.transform.position = IsRun_Checkpoints_Dictionary[checkpointName].transform.position;
-        player.transform.position += new Vector3(1, 0, 0);
+        player.transform.position += RespawnPositionOffset;
         player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         player.GetComponent<Rigidbody2D>().angularVelocity = 0;
         player.transform.rotation = Quaternion.Euler(0, 0, 0);
