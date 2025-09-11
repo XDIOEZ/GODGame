@@ -85,7 +85,13 @@ public class Engine : MonoBehaviour
         SimulationGravity();
         // Á£×Ó¿ØÖÆ
         if (engineParticles != null)
+        {
             engineParticles.SetActive(engineActive);
+            if (Fuel.fuel <= 0)
+            {
+                engineParticles.SetActive(false);
+            }
+        }
 
         if (!engineActive) return;
 

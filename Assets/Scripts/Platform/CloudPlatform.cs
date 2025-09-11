@@ -17,7 +17,13 @@ public class CloudPlatform : PlatformBase
     [Tooltip("是否允许完全消失后重生")]
     public bool canRecover = true;       // 完全消失后是否允许重生
 
-    [Tooltip("重生所需时间")]
+    [Header("虚化掉落设置")]
+    public bool canFall = true;       // 是否允许中间掉落
+    [Tooltip("最大值为1，最小值为0")]
+    public float canFallTimeFactor = 0.5f;
+    private float FallTimeAdjust;
+    
+    [Header(("重生所需时间"))]
     public float recoverDuration = 5f;   // 从消失到开始重生的间隔时间
 
     private SpriteRenderer spriteRenderer;
@@ -57,11 +63,19 @@ public class CloudPlatform : PlatformBase
             // 接触时：计时并逐渐消失
             contactTimer += Time.deltaTime;
             targetAlpha = 1 - (contactTimer / disappearDuration);
-
+            FallTimeAdjust = canFallTimeFactor * disappearDuration;
+            if (canFall)
+            {
+                if (contactTimer >= FallTimeAdjust)
+                {
+                    isDisappeared = true;
+                    platformCollider.enabled = false; // 禁用碰撞
+                }
+            }
             if (contactTimer >= disappearDuration)
             {
-                isDisappeared = true;
-                platformCollider.enabled = false; // 禁用碰撞
+                    isDisappeared = true;
+                    platformCollider.enabled = false; // 禁用碰撞
             }
         }
         else
@@ -81,6 +95,8 @@ public class CloudPlatform : PlatformBase
             }
             // 不允许恢复：保持当前透明度和计时
         }
+
+
 
         // 应用透明度渐变
         float currentAlpha = Mathf.MoveTowards(
