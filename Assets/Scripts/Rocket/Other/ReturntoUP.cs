@@ -63,7 +63,7 @@ public class ReturntoUP : MonoBehaviour
 
     private void FixedUpdate()
     {
-        ReturnShopLow();
+        //ReturnShopLow();
     }
 
     private void OnTriggerStay2D(Collider2D collision)
