@@ -7,7 +7,7 @@ public class InteractBase : MonoBehaviour
 {
     public void Start()
     {
-        GetComponentInParent<InteractReciver>().onInteractEvent_Start += Action;
+        GetComponentInChildren<InteractReciver>().onInteractEvent_Start += Action;
     }
     public virtual void Action(Interacter interacter)
     {

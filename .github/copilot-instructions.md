@@ -2,7 +2,7 @@
 - Project name: GODGame
 - Unity version: Unity 2022.3.51f1c1
 - Active game object:
-  - Name: pointA
+  - Name: Text (Legacy)
   - Tag: Untagged
-  - Layer: Ground
+  - Layer: UI
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

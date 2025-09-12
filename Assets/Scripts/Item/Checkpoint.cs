@@ -42,6 +42,11 @@ public class Checkpoint : InteractBase
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
+    public void ClearCheckpointDictionary()
+    {
+        IsRun_Checkpoints_Dictionary.Clear();
+    }
+
     public void Load()
     {
         PersistentDataUtil_Json.Load(gameObject.name, ref Data);
@@ -63,6 +68,7 @@ public class Checkpoint : InteractBase
     [Tooltip("回到指定的Checkpoint")]
     public static void BackToCheckPoint(string checkpointName, GameObject player)
     {
+        //TODO 在回去时清理一下
         player.transform.position = IsRun_Checkpoints_Dictionary[checkpointName].transform.position;
         player.transform.position += RespawnPositionOffset;
         player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
 using UnityEngine.UI;
 
@@ -20,28 +21,37 @@ public class SelfReturnCheckPoint : MonoBehaviour
     [Header("所属对象")]
     public GameObject owner; // 所属对象
 
+    private InputAction action;
+    private EventTrigger trigger;
+
     void Start()
     {
         if (owner == null)
-            owner = transform.parent.gameObject;
+            owner = transform.parent?.gameObject;
 
         BindKeyboard();
         BindButton();
     }
+
     #region 输入绑定
     private void BindKeyboard()
     {
-        var action = controller.playerInput.actions[inputActionName];
+        if (controller == null || controller.playerInput == null) return;
+
+        action = controller.playerInput.actions[inputActionName];
         if (action != null)
         {
-            action.started += ctx => Enable();
-            action.canceled += ctx => Disable();
+            action.started += OnActionStarted;
+            action.canceled += OnActionCanceled;
         }
     }
 
+    private void OnActionStarted(InputAction.CallbackContext ctx) => Enable();
+    private void OnActionCanceled(InputAction.CallbackContext ctx) => Disable();
+
     private void Disable()
     {
-        
+        // TODO: 如果有需要恢复状态可写逻辑
     }
 
     private void Enable()
@@ -53,7 +63,7 @@ public class SelfReturnCheckPoint : MonoBehaviour
     {
         if (button == null) return;
 
-        EventTrigger trigger = button.gameObject.GetComponent<EventTrigger>();
+        trigger = button.gameObject.GetComponent<EventTrigger>();
         if (trigger == null)
             trigger = button.gameObject.AddComponent<EventTrigger>();
 
@@ -70,5 +80,27 @@ public class SelfReturnCheckPoint : MonoBehaviour
         entry.callback.AddListener((data) => action.Invoke());
         trigger.triggers.Add(entry);
     }
-#endregion
+    #endregion
+
+    private void OnDestroy()
+    {
+        // 解绑输入事件
+        if (action != null)
+        {
+            action.started -= OnActionStarted;
+            action.canceled -= OnActionCanceled;
+            action = null;
+        }
+
+        // 清理 UI EventTrigger
+        if (trigger != null && trigger.triggers != null)
+        {
+            trigger.triggers.Clear();
+            trigger = null;
+        }
+
+        button = null;
+        controller = null;
+        owner = null;
+    }
 }
