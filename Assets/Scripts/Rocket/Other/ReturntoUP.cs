@@ -24,6 +24,14 @@ public class ReturntoUP : MonoBehaviour
     [SerializeField]
     private float retrunAngle = 0;        // 统一使用Layer检测（已修正）
 
+    [Header("燃料组件")]
+    public ParameterFuel fuel;        // 统一使用Layer检测（已修正）
+
+    [Header("平滑旋转参数")]
+    public float smoothRotationTime = 0.5f; // 平滑旋转所需时间
+    private bool isSmoothingRotation = false; // 平滑旋转状态标志
+    private float currentReturnTimer = 0; // 平滑旋转计时器
+
     [SerializeField]
     private float currentRetrunTimer = 0f;        // 统一使用Layer检测（已修正）
 
@@ -42,6 +50,20 @@ public class ReturntoUP : MonoBehaviour
             else
                 Debug.LogError("未找到玩家！请给玩家设置标签'Player'，或手动赋值playerTarget");
         }
+    }
+
+    private void Update()
+    {
+        if (fuel.fuel <= 0)
+        {
+            ReturnShopLowBool();
+        }
+        
+    }
+
+    private void FixedUpdate()
+    {
+        //ReturnShopLow();
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -68,13 +90,50 @@ public class ReturntoUP : MonoBehaviour
             currentRetrunTimer += Time.deltaTime;
         if (currentRetrunTimer >= retrunTimer)
         {
-              // 重置z轴旋转为0（保持x、y轴旋转不变）
-              Vector3 currentEuler = PlayerTransform.eulerAngles;
-              currentEuler.z = 0; // 只重置z轴
-              PlayerTransform.eulerAngles = currentEuler;
-              currentRetrunTimer = 0;
+                ReturnShopRight();
         }
     }
         else { currentRetrunTimer = 0; }
     }
+
+    private void ReturnShopRight()
+    {
+        // 重置z轴旋转为0（保持x、y轴旋转不变）
+        Vector3 currentEuler = PlayerTransform.eulerAngles;
+        currentEuler.z = 0; // 只重置z轴
+        PlayerTransform.eulerAngles = currentEuler;
+        currentRetrunTimer = 0;
+    }
+
+    // 平滑过渡将Z轴旋转回正
+    private void ReturnShopLowBool()
+    {
+        isSmoothingRotation = true; // 启用平滑旋转标志
+        currentReturnTimer = 0; // 重置计时器
+    }
+    private void ReturnShopLow()
+    {
+        // 如果需要平滑旋转，在Update中逐步过渡
+        if (isSmoothingRotation)
+        {
+            currentReturnTimer += Time.deltaTime;
+            float progress = Mathf.Clamp01(currentReturnTimer / smoothRotationTime);
+
+            // 获取当前旋转并只平滑Z轴
+            Vector3 currentEuler = PlayerTransform.eulerAngles;
+            // 使用Lerp进行平滑过渡，从当前Z值过渡到0
+            currentEuler.z = Mathf.LerpAngle(currentEuler.z, 0, progress);
+            PlayerTransform.eulerAngles = currentEuler;
+
+            // 当旋转完成后停止平滑
+            if (progress >= 1f)
+            {
+                isSmoothingRotation = false;
+                currentEuler.z = 0; // 确保最终精确到0
+                PlayerTransform.eulerAngles = currentEuler;
+            }
+        }
+    }
+
+    
 }
