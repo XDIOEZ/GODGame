@@ -1,20 +1,20 @@
 using UnityEngine;
 
-public class FuelUp : MonoBehaviour
+public class FuelUp :MonoBehaviour
 {
     [Header("燃料设置")]
     public float AddmaxFuel = 0.5f;
     public float followSpeed = 5f;
     public float detectionRadius = 3f;
 
-    [Header("层级设置")]
-    public LayerMask playerLayer = 1;
+    [Header("引用设置")]
+    public GameObject playerFuel;
+    public LayerMask playerLayer = 1; // 默认层
 
     private Transform playerTransform;
     private bool isFollowing = false;
     private Rigidbody2D rb;
     private Collider2D itemCollider;
-    private ParameterFuel playerParameterFuel;
 
     void Start()
     {
@@ -23,10 +23,21 @@ public class FuelUp : MonoBehaviour
 
         // 自动设置玩家层级
         playerLayer = LayerMask.GetMask("Player");
+
+        // 如果没有指定playerFuel，尝试自动查找
+        if (playerFuel == null)
+        {
+            GameObject player = GameObject.FindWithTag("Player");
+            if (player != null)
+            {
+                playerFuel = player;
+            }
+        }
     }
 
     void Update()
     {
+        // 检测范围内的玩家
         if (!isFollowing)
         {
             DetectPlayer();
@@ -45,31 +56,26 @@ public class FuelUp : MonoBehaviour
         {
             if (player.CompareTag("Player"))
             {
-                // 获取玩家的燃料组件
-                playerParameterFuel = player.GetComponentInChildren<ParameterFuel>();
-                if (playerParameterFuel != null)
-                {
-                    playerTransform = player.transform;
-                    isFollowing = true;
+                playerTransform = player.transform;
+                isFollowing = true;
 
-                    // 禁用碰撞器以避免物理干扰
-                    if (itemCollider != null)
-                        itemCollider.enabled = false;
+                // 禁用碰撞器以避免物理干扰
+                if (itemCollider != null)
+                    itemCollider.enabled = false;
 
-                    // 如果是2D物理，设置刚体类型
-                    if (rb != null)
-                        rb.isKinematic = true;
+                // 如果是2D物理，设置刚体类型
+                if (rb != null)
+                    rb.isKinematic = true;
 
-                    Debug.Log("开始跟随玩家");
-                    break;
-                }
+                Debug.Log("开始跟随玩家");
+                break;
             }
         }
     }
 
     void FollowPlayer()
     {
-        if (playerTransform == null || playerParameterFuel == null)
+        if (playerTransform == null)
         {
             isFollowing = false;
             return;
@@ -90,46 +96,14 @@ public class FuelUp : MonoBehaviour
 
     void ApplyFuelEffect()
     {
-        if (playerParameterFuel != null)
+        if (playerFuel != null)
         {
-            playerParameterFuel.maxFuel += AddmaxFuel;
-            playerParameterFuel.fuel = Mathf.Min(playerParameterFuel.fuel + AddmaxFuel, playerParameterFuel.maxFuel);
-            Debug.Log($"增加燃料上限: {playerParameterFuel.maxFuel}, 当前燃料: {playerParameterFuel.fuel}");
-        }
-    }
-
-    // 直接碰撞检测（作为备用方案）
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player") && !isFollowing)
-        {
-            // 获取玩家的燃料组件
-            playerParameterFuel = collision.gameObject.GetComponentInChildren<ParameterFuel>();
-            if (playerParameterFuel != null)
+            ParameterFuel parameterFuel = playerFuel.GetComponent<ParameterFuel>();
+            if (parameterFuel != null)
             {
-                ApplyFuelEffect();
-                Destroy(gameObject);
-            }
-        }
-    }
-
-    // 触发检测（用于跟随）
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Player") && !isFollowing)
-        {
-            // 获取玩家的燃料组件
-            playerParameterFuel = other.GetComponentInChildren<ParameterFuel>();
-            if (playerParameterFuel != null)
-            {
-                playerTransform = other.transform;
-                isFollowing = true;
-
-                if (itemCollider != null)
-                    itemCollider.enabled = false;
-
-                if (rb != null)
-                    rb.isKinematic = true;
+                parameterFuel.maxFuel += AddmaxFuel;
+                parameterFuel.fuel = Mathf.Min(parameterFuel.fuel + AddmaxFuel, parameterFuel.maxFuel);
+                Debug.Log($"增加燃料上限: {parameterFuel.maxFuel}, 当前燃料: {parameterFuel.fuel}");
             }
         }
     }
@@ -139,5 +113,21 @@ public class FuelUp : MonoBehaviour
     {
         Gizmos.color = isFollowing ? Color.green : Color.yellow;
         Gizmos.DrawWireSphere(transform.position, detectionRadius);
+    }
+
+    // 移除原来的碰撞检测，改用触发检测
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player") && !isFollowing)
+        {
+            playerTransform = other.transform;
+            isFollowing = true;
+
+            if (itemCollider != null)
+                itemCollider.enabled = false;
+
+            if (rb != null)
+                rb.isKinematic = true;
+        }
     }
 }

@@ -241,9 +241,10 @@ MonoBehaviour:
   Type: 3
   pointA: {fileID: 7042052896036799024}
   pointB: {fileID: 3917764841537152286}
-  moveSpeed: 0.1
-  isLooping: 1
-  usePersistence: 1
+  moveSpeed: 3
+  reachDistance: 0.2
+  loopMovement: 1
+  startAtPointA: 1
 --- !u!1 &7005818527121506501
 GameObject:
   m_ObjectHideFlags: 0

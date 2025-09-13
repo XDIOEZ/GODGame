@@ -56,7 +56,7 @@ public class ReturntoUP : MonoBehaviour
     {
         if (fuel.fuel <= 0)
         {
-            ReturnShopLowBool();
+           //ReturnShopLowBool();
         }
         
     }
