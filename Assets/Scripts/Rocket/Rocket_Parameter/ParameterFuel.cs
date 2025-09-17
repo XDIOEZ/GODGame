@@ -23,8 +23,7 @@ public class ParameterFuel : ParameterBase
     private float maxRange;
     private float minRange;
 
-    [Header("ÒýÇæ²ÎÊý")]
-    public Engine mianEngineDate;
+
 
 
     private void Start()
@@ -34,7 +33,7 @@ public class ParameterFuel : ParameterBase
             fuel = maxFuel;
         }
 
-        maxRange = (mianEngineDate.thrustForce/100) * (maxFuel/ fuelCoefficient) * mianEngineDate.fallingspeed.Fallingspeed;
+      //  maxRange = (mianEngineDate.thrustForce/100) * (maxFuel/ fuelCoefficient) * mianEngineDate.fallingspeed.Fallingspeed;
     }
     public int FuelCoefficient =>fuelCoefficient;
 
