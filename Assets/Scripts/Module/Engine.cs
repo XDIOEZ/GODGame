@@ -46,6 +46,10 @@ public class Engine : MonoBehaviour
     [Header("新输入系统 Action")]
     public string inputActionName = "LeftFly"; // 可在 Inspector 修改
 
+    [Header("音效设置")]
+    public AudioType engineSoundType = AudioType.Up; // 设置引擎音效类型
+    private bool wasPlayingSound = false; // 记录之前是否在播放音效
+
     private bool engineActive;
 
     private void Awake()
@@ -78,6 +82,39 @@ public class Engine : MonoBehaviour
                 Debug.LogWarning($"InputAction '{inputActionName}' not found on PlayerInput.");
             }
         }
+        // UI按钮事件 - 详细音效控制
+        AddButtonEvents(engineButton,
+            () => {
+                // 按下按钮时
+                engineActive = true;
+                PlayEngineSound(); // 播放引擎音效
+            },
+            () => {
+                // 释放按钮时
+                engineActive = false;
+                StopEngineSound(); // 停止引擎音效
+            });
+
+        // 新输入系统监听 - 详细音效控制
+        if (controller != null && !string.IsNullOrEmpty(inputActionName))
+        {
+            var action = controller.playerInput.actions[inputActionName];
+            if (action != null)
+            {
+                action.started += ctx => {
+                    engineActive = true;
+                    PlayEngineSound(); // 输入开始时播放音效
+                };
+                action.canceled += ctx => {
+                    engineActive = false;
+                    StopEngineSound(); // 输入结束时停止音效
+                };
+            }
+            else
+            {
+                Debug.LogWarning($"InputAction '{inputActionName}' not found on PlayerInput.");
+            }
+        }
     }
 
     private void Update()
@@ -92,12 +129,20 @@ public class Engine : MonoBehaviour
                 engineParticles.SetActive(false);
             }
         }
-
+        // 检查燃料状态来控制音效
+        CheckFuelForSound();
         if (!engineActive) return;
 
         //燃料耗尽
-        if (Fuel.fuel<=0)
+        if (Fuel.fuel <= 0)
+        {
+            // 确保燃料耗尽时音效停止
+            if (wasPlayingSound)
+            {
+                StopEngineSound();
+            }
             return;
+        }
 
         //测试用，后期必删↓
         //if (Fuel.fuel < 100)
@@ -130,6 +175,7 @@ public class Engine : MonoBehaviour
         {
             CurrentTrustData = default; // 清空当前数据
             return;
+
         }
 
         // 当key为空时清空当前数据
@@ -155,7 +201,46 @@ public class Engine : MonoBehaviour
             Debug.LogWarning($"推力参数中不存在key：{ThrustKey}");
         }
     }
+    // 检查燃料状态并控制音效
+    private void CheckFuelForSound()
+    {
+        // 如果引擎正在工作但燃料耗尽，停止音效
+        if (engineActive && Fuel.fuel <= 0 && wasPlayingSound)
+        {
+            StopEngineSound();
+        }
 
+        // 如果燃料恢复且引擎应该工作，重新播放音效
+        if (engineActive && Fuel.fuel > 0 && !wasPlayingSound)
+        {
+            PlayEngineSound();
+        }
+    }
+    // 播放引擎音效的详细方法
+    private void PlayEngineSound()
+    {
+        // 只有在有燃料且音效尚未播放时才播放
+        if (Fuel.fuel > 0 && !wasPlayingSound)
+        {
+            EventController.RaiseOnPlayAudio(engineSoundType);
+            
+            wasPlayingSound = true;
+            Debug.Log($"开始播放引擎音效: {engineSoundType}");
+            print(engineSoundType);
+        }
+    }
+
+    // 停止引擎音效的详细方法
+    private void StopEngineSound()
+    {
+        // 只有在音效正在播放时才停止
+        if (wasPlayingSound)
+        {
+            EventController.RaiseOnStopAudio(engineSoundType);
+            wasPlayingSound = false;
+            Debug.Log($"停止播放引擎音效: {engineSoundType}");
+        }
+    }
 
     private void AddButtonEvents(Button button, System.Action onDown, System.Action onUp)
     {

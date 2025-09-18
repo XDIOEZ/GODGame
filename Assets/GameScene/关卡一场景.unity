@@ -3734,6 +3734,22 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5035975589465185293, guid: 466d3d1c9c0524f428da13492ec43ff5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5035975589465185293, guid: 466d3d1c9c0524f428da13492ec43ff5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100876889345864395, guid: 466d3d1c9c0524f428da13492ec43ff5, type: 3}
+      propertyPath: maxFallingSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5100876889345864395, guid: 466d3d1c9c0524f428da13492ec43ff5, type: 3}
+      propertyPath: minFallingSpeed
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 6492655532472503795, guid: 466d3d1c9c0524f428da13492ec43ff5, type: 3}
       propertyPath: fuel
       value: 2
@@ -3744,11 +3760,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7846775205734001353, guid: 466d3d1c9c0524f428da13492ec43ff5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.5
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7846775205734001353, guid: 466d3d1c9c0524f428da13492ec43ff5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.5
+      value: 5.7
       objectReference: {fileID: 0}
     - target: {fileID: 7846775205734001353, guid: 466d3d1c9c0524f428da13492ec43ff5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3970,6 +3986,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96d1d06241ae9364fa8237dc04c7ada8, type: 3}
+--- !u!114 &1731804126 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 955479675675685370, guid: 466d3d1c9c0524f428da13492ec43ff5, type: 3}
+  m_PrefabInstance: {fileID: 1548740313}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1794164652
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4031,6 +4058,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96d1d06241ae9364fa8237dc04c7ada8, type: 3}
+--- !u!114 &1796160165 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6644742169655099485, guid: 466d3d1c9c0524f428da13492ec43ff5, type: 3}
+  m_PrefabInstance: {fileID: 1548740313}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1874003019
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4767,6 +4805,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3953675778863228100, guid: 545266339985c964591998d8828ef470, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5023061550996657572, guid: 545266339985c964591998d8828ef470, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.206429
@@ -4807,10 +4849,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5880548904582059358, guid: 545266339985c964591998d8828ef470, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5896986648011138352, guid: 545266339985c964591998d8828ef470, type: 3}
       propertyPath: m_Name
       value: AudioManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7769021707967050043, guid: 545266339985c964591998d8828ef470, type: 3}
+      propertyPath: buttonsWithSound.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7769021707967050043, guid: 545266339985c964591998d8828ef470, type: 3}
+      propertyPath: buttonsWithSound.Array.data[0]
+      value: 
+      objectReference: {fileID: 1796160165}
+    - target: {fileID: 7769021707967050043, guid: 545266339985c964591998d8828ef470, type: 3}
+      propertyPath: buttonsWithSound.Array.data[1]
+      value: 
+      objectReference: {fileID: 1731804126}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

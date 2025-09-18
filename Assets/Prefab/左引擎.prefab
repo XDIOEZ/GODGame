@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4544754813965956872}
   - component: {fileID: 6066849795059180472}
   - component: {fileID: 4287803583601809777}
+  - component: {fileID: 8772179064724407241}
   m_Layer: 0
   m_Name: "\u5DE6\u5F15\u64CE"
   m_TagString: Untagged
@@ -120,6 +121,7 @@ MonoBehaviour:
   maxStabilizationTorque: 0
   engineType: 0
   inputActionName: A
+  engineSoundType: 1
 --- !u!61 &4287803583601809777
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -165,6 +167,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &8772179064724407241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2286313727187637384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e460d6d834114b48b7dc0793301dbe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetRigidbody: {fileID: 0}
+  engine: {fileID: 0}
+  fallingSoundType: 2
+  minFallingSpeed: 3
+  maxFallingSpeed: 15
+  speedSmoothing: 5
+  startDelay: 0.1
+  stopDelay: 0.5
+  debugMode: 1
 --- !u!1 &2749273077899286760
 GameObject:
   m_ObjectHideFlags: 0
