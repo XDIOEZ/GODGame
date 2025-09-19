@@ -8,12 +8,14 @@ public class StartSceneUI : BasePanel
     public Button continueGameBtn;
     public Button newGameBtn;
     public Button quitBtn;
+    public Button settingBtn;
     // Start is called before the first frame update
     void Start()
     {
         continueGameBtn.onClick.AddListener(OnContinueGame);
         newGameBtn.onClick.AddListener(OnNewGame);
         quitBtn.onClick.AddListener(OnQuitGame);
+        settingBtn.onClick.AddListener(OnSeeting);
     }
 
     // Update is called once per frame
@@ -56,5 +58,10 @@ public class StartSceneUI : BasePanel
         //activity.Call<bool>("moveTaskToBack", true);
         Application.Quit();
         // Add logic to quit the game
+    }
+
+    public void OnSeeting()
+    {
+        UIManager.Instance.Show(UIPanelType.SettingView);
     }
 }

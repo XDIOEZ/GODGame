@@ -8,5 +8,6 @@ public enum UIPanelType  {
     SecendView,
     StartScene,
     RocketChangeScene,
-    RocketValuesView
+    RocketValuesView,
+    SettingView
 }

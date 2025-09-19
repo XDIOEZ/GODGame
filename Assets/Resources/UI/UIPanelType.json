@@ -19,6 +19,10 @@
     {
       "panelTypeString": "RocketValuesView",
       "path": "UI/View/RocketValuesView"
+    },
+    {
+      "panelTypeString": "SettingView",
+      "path": "UI/View/SettingView"
     }
   ]
 }
