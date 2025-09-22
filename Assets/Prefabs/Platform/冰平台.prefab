@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9187572816717107097}
   - component: {fileID: 347541309876848231}
   - component: {fileID: 5158845545158252533}
+  - component: {fileID: 8203440611037552286}
   m_Layer: 7
   m_Name: "\u51B0\u5E73\u53F0"
   m_TagString: Untagged
@@ -174,6 +175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Canmove: 0
   Type: 1
+  Tip: {fileID: 0}
   checkRadius: 1
   targetLayer:
     serializedVersion: 2
@@ -182,6 +184,20 @@ MonoBehaviour:
   scaleSpeed: 0.1
   scaleAxis: {x: 1, y: 1, z: 1}
   minScale: {x: 0.1, y: 1, z: 1}
+--- !u!114 &8203440611037552286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5937061822707923396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6834d659d95fc53468023e36e292707c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tip: {fileID: 0}
+  tipSwitch: 0
 --- !u!1 &7419640254689839429
 GameObject:
   m_ObjectHideFlags: 0

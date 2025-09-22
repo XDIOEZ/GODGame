@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6137220564132457356}
   - component: {fileID: 2201376722420865210}
   - component: {fileID: 4570112134086173475}
+  - component: {fileID: 4894339288756051131}
   m_Layer: 7
   m_Name: "\u5730\u523A\u8BF4\u662F"
   m_TagString: Untagged
@@ -177,6 +178,20 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   damageCooldown: 1
+--- !u!114 &4894339288756051131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1575101137132111361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6834d659d95fc53468023e36e292707c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tip: {fileID: 0}
+  tipSwitch: 0
 --- !u!1 &7267805132277795696
 GameObject:
   m_ObjectHideFlags: 0

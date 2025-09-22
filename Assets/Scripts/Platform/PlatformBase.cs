@@ -18,15 +18,19 @@ public class PlatformBase : MonoBehaviour
     private bool Canmove=false;
     [SerializeField]
     private PlatFormType Type;
-    // Start is called before the first frame update
-    void Start()
+
+    public PlatFormTip Tip;
+
+    private void Awake()
     {
-        
+        Init();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Init()
     {
-        
+        Tip = GetComponent<PlatFormTip>();
+
+
+        Tip.tip = transform.Find("Tip").gameObject;
     }
 }

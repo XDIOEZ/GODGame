@@ -79,6 +79,7 @@ GameObject:
   - component: {fileID: 3046917867879992782}
   - component: {fileID: 2625238998353861177}
   - component: {fileID: 6294637472221287734}
+  - component: {fileID: 1614324859672706993}
   m_Layer: 7
   m_Name: "\u5E73\u53F0"
   m_TagString: Untagged
@@ -239,12 +240,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Canmove: 1
   Type: 3
+  Tip: {fileID: 0}
   pointA: {fileID: 7042052896036799024}
   pointB: {fileID: 3917764841537152286}
   moveSpeed: 3
   reachDistance: 0.2
   loopMovement: 1
   startAtPointA: 1
+--- !u!114 &1614324859672706993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5811614320309771368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6834d659d95fc53468023e36e292707c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tip: {fileID: 0}
+  tipSwitch: 0
 --- !u!1 &7005818527121506501
 GameObject:
   m_ObjectHideFlags: 0

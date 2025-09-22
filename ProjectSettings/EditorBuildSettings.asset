@@ -6,8 +6,16 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+<<<<<<< Updated upstream
     path: "Assets/GameScene/\u65B0\u624B\u6559\u7A0B.unity"
     guid: 6668e318e130b974e85fa276c011521c
+=======
+    path: Assets/Scenes/StartScene.unity
+    guid: 468b36e1d1ac3fa489b316ec05d4e850
+  - enabled: 1
+    path: "Assets/GameScene/\u5173\u53614.unity"
+    guid: 63cc5379a424077468fac7f89f7eb527
+>>>>>>> Stashed changes
   - enabled: 1
     path: "Assets/GameScene/\u5173\u5361\u4E00\u573A\u666F.unity"
     guid: fe8058b24abe182408b44e53dcb2c5d8
@@ -17,12 +25,6 @@ EditorBuildSettings:
   - enabled: 1
     path: "Assets/GameScene/\u5173\u53613.unity"
     guid: 01aa068c5e10e0c4d92392ca37ff0e4b
-  - enabled: 1
-    path: "Assets/GameScene/\u5173\u53614.unity"
-    guid: 63cc5379a424077468fac7f89f7eb527
-  - enabled: 0
-    path: Assets/Scenes/StartScene.unity
-    guid: 468b36e1d1ac3fa489b316ec05d4e850
   - enabled: 0
     path: Assets/Scenes/TapTapSDKTest.unity
     guid: 9ccadfef395f9ef45b4d84c7840ded23

@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 1570628113488279939}
   - component: {fileID: 427985753896894925}
   - component: {fileID: 5160449991001577853}
+  - component: {fileID: 5850385813701214880}
   m_Layer: 7
   m_Name: "\u4E91\u5E73\u53F0"
   m_TagString: Untagged
@@ -271,9 +272,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Canmove: 0
   Type: 2
+  Tip: {fileID: 0}
   disappearDuration: 3
   fadeSpeed: 2
   targetLayer:
     serializedVersion: 2
     m_Bits: 64
   shouldRecover: 1
+  canRecover: 1
+  canFall: 1
+  canFallTimeFactor: 0.5
+  recoverDuration: 5
+--- !u!114 &5850385813701214880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7483098472610632375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6834d659d95fc53468023e36e292707c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tip: {fileID: 0}
+  tipSwitch: 0
