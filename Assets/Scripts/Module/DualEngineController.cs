@@ -60,41 +60,43 @@ public class DualEngineController : MonoBehaviour
         }
     }
 
-    private void Update()
+private void Update()
+{
+    // 粒子效果控制保留在 Update 中
+    if (leftEngineParticles != null) leftEngineParticles.SetActive(leftActive && fuelData.fuel > 0);
+    if (rightEngineParticles != null) rightEngineParticles.SetActive(rightActive && fuelData.fuel > 0);
+
+    // 燃料消耗也保留在 Update 中（因为燃料消耗与视觉反馈更相关）
+    if (fuelData != null && fuelData.fuel > 0 && (leftActive || rightActive))
     {
-        if (leftEngineParticles != null) leftEngineParticles.SetActive(leftActive && fuelData.fuel > 0);
-        if (rightEngineParticles != null) rightEngineParticles.SetActive(rightActive && fuelData.fuel > 0);
+        fuelData.fuel -= Time.deltaTime * fuelData.FuelCoefficient;
+        if (fuelData.fuel < 0) fuelData.fuel = 0;
+    }
+}
 
-        if (fuelData != null && fuelData.fuel > 0 && (leftActive || rightActive))
-        {
-            fuelData.fuel -= Time.deltaTime * fuelData.FuelCoefficient;
-            if (fuelData.fuel < 0) fuelData.fuel = 0;
-        }
+private void FixedUpdate()
+{
+    // 物理计算移到 FixedUpdate 中，避免帧率影响
+    if (fuelData == null || fuelData.fuel <= 0 || rb == null) return;
 
-        if (fuelData == null || fuelData.fuel <= 0 || rb == null) return;
+    Vector2 velocity = rb.velocity;
+    float angularVel = rb.angularVelocity;
 
-        Vector2 velocity = rb.velocity;
-        float angularVel = rb.angularVelocity;
-
-        if (leftActive)
-        {
-            velocity += (Vector2)transform.up * leftThrustPower * Time.fixedDeltaTime;
-            angularVel -= leftTorquePower;
-        }
-
-        if (rightActive)
-        {
-            velocity += (Vector2)transform.up * rightThrustPower * Time.fixedDeltaTime;
-            angularVel += rightTorquePower;
-        }
-
-        rb.velocity = velocity;
-        rb.angularVelocity = angularVel;
+    if (leftActive)
+    {
+        velocity += (Vector2)transform.up * leftThrustPower * Time.fixedDeltaTime;
+        angularVel -= leftTorquePower;
     }
 
-    private void FixedUpdate()
+    if (rightActive)
     {
+        velocity += (Vector2)transform.up * rightThrustPower * Time.fixedDeltaTime;
+        angularVel += rightTorquePower;
     }
+
+    rb.velocity = velocity;
+    rb.angularVelocity = angularVel;
+}
 
     private void AddButtonEvents(Button button, System.Action onDown, System.Action onUp)
     {
