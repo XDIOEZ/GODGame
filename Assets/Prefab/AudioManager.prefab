@@ -46,7 +46,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -302,7 +302,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -703,6 +703,8 @@ MonoBehaviour:
   - audioType: 3
     audioClip: {fileID: 8300000, guid: 1fa59f3032bb70647b6672983a3478d3, type: 3}
     audioSource: {fileID: 7629958582646906620}
+  buttonSoundType: 3
+  buttonTag: SoundButton
 --- !u!1 &7122707425083062901
 GameObject:
   m_ObjectHideFlags: 0

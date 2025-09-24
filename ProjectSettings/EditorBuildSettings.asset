@@ -5,4 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes: []
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.adaptiveperformance.oppo.android.provider_settings: {fileID: 11400000, guid: 3856acbf5b51dc447a83f312d5a60a40, type: 2}
+    com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: f7af54be76cf4a24198ae01171709720, type: 2}
+    com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 617e76f24659dde43a0133dcf032408a, type: 2}

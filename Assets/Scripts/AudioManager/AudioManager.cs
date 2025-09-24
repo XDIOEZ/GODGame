@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 /// <summary>
@@ -23,8 +24,8 @@ public class AudioManager : MonoBehaviour
     private Dictionary<AudioType, AudioDate> audioDict = new Dictionary<AudioType, AudioDate>();
 
     [Header("按钮音效设置")]
-    public AudioType buttonSoundType = AudioType.Btn; // 按钮点击音效类型
-    public List<Button> buttonsWithSound; // 需要在外部拖入的按钮列表
+    public AudioType buttonSoundType = AudioType.Btn;
+    public string buttonTag = "SoundButton"; // 指定标签名称
 
     [Serializable]
     public struct AudioDate
@@ -75,8 +76,9 @@ public class AudioManager : MonoBehaviour
             InitializeAudioDict();
         }
 
-        // 为所有按钮添加点击音效
-        SetupButtonSounds();
+        // 自动绑定带标签的按钮
+        AutoBindTaggedButtons();
+
 
         // 播放BGM
         if (audioDate.Count > 0 && audioDate[0].audioSource != null)
@@ -110,61 +112,48 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    // 设置按钮点击音效
-    private void SetupButtonSounds()
+     // 自动绑定带指定标签的按钮
+    private void AutoBindTaggedButtons()
     {
-        if (buttonsWithSound == null) return;
-
-        foreach (Button button in buttonsWithSound)
+        // 方法1：通过标签查找
+        GameObject[] taggedObjects = GameObject.FindGameObjectsWithTag(buttonTag);
+        foreach (GameObject obj in taggedObjects)
         {
+            Button button = obj.GetComponent<Button>();
             if (button != null)
             {
-                // 移除可能已存在的监听器，避免重复添加
-                button.onClick.RemoveAllListeners();
-                // 添加点击音效监听器
-                button.onClick.AddListener(() => PlayButtonSound());
-
-                Debug.Log($"已为按钮 {button.name} 添加点击音效");
+                BindButtonSound(button);
             }
         }
+
+        Debug.Log($"已自动绑定 {taggedObjects.Length} 个带标签按钮的音效");
     }
 
-    // 播放按钮点击音效
-    private void PlayButtonSound()
+    // 为单个按钮绑定音效
+    private void BindButtonSound(Button button)
     {
-        PlayAudio(buttonSoundType);
-        Debug.Log("播放按钮点击音效");
+        if (button == null) return;
+
+        // 移除已有监听器（避免重复）
+        button.onClick.RemoveListener(PlayButtonSound);
+        button.onClick.AddListener(PlayButtonSound);
     }
 
-    // 手动添加按钮到音效列表
-    public void AddButtonWithSound(Button button)
+    // 场景加载完成后重新绑定按钮
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (button != null && !buttonsWithSound.Contains(button))
-        {
-            buttonsWithSound.Add(button);
-            // 立即为新增按钮添加点击音效
-            button.onClick.RemoveAllListeners();
-            button.onClick.AddListener(() => PlayButtonSound());
-
-            Debug.Log($"已添加按钮 {button.name} 到音效列表");
-        }
+        Invoke(nameof(AutoBindTaggedButtons), 0.1f);
     }
 
-    // 移除按钮的音效
-    public void RemoveButtonSound(Button button)
-    {
-        if (button != null && buttonsWithSound.Contains(button))
-        {
-            buttonsWithSound.Remove(button);
-            // 移除点击监听器（注意：这会移除所有监听器）
-            button.onClick.RemoveAllListeners();
+    
 
-            Debug.Log($"已移除按钮 {button.name} 的音效");
-        }
-    }
+   
 
     private void OnEnable()
     {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+        EventController.OnPlayAudio += PlayerAudio;
+       
         EventController.OnPlayAudio += PlayerAudio;
         EventController.OnStopAudio += StopAudio;
         EventController.OnSetAudioVolume += SetAudioVolume;
@@ -172,9 +161,37 @@ public class AudioManager : MonoBehaviour
 
     private void OnDisable()
     {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+        EventController.OnPlayAudio -= PlayerAudio;
+        
         EventController.OnPlayAudio -= PlayerAudio;
         EventController.OnStopAudio -= StopAudio;
         EventController.OnSetAudioVolume -= SetAudioVolume;
+    }
+    // 播放按钮点击音效
+    private void PlayButtonSound()
+    {
+        PlayAudio(buttonSoundType);
+    }
+
+    // 手动绑定指定按钮（可用于动态创建的按钮）
+    public void BindSpecificButton(Button button)
+    {
+        if (button != null)
+        {
+            BindButtonSound(button);
+            Debug.Log($"已为按钮 {button.name} 绑定音效");
+        }
+    }
+
+    // 手动解绑按钮
+    public void UnbindButton(Button button)
+    {
+        if (button != null)
+        {
+            button.onClick.RemoveListener(PlayButtonSound);
+            Debug.Log($"已移除按钮 {button.name} 的音效绑定");
+        }
     }
 
     // 音量控制方法
