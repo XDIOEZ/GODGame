@@ -6,17 +6,24 @@ using UnityEngine;
 
 public class Checkpoint : InteractBase
 {
-    #region 公共静态字段
-    [ShowInInspector]
-    [Header("存储所有Checkpoint的字典")]
-    public static Dictionary<string, Checkpoint> IsRun_Checkpoints_Dictionary=new Dictionary<string, Checkpoint>();
-    [Header("新增的Checkpoint数据")]
-    public static Dictionary<string, CheckpointData> NewCheckpointData = new Dictionary<string, CheckpointData>();
-  
-    [Header("当前激活的Checkpoint的名字,也就是玩家的复活点")]
-    [ShowInInspector]
-    public static string CurrentActiveCheckpointName = "默认检查点";
-    #endregion
+    
+#region 公共静态字段
+[ShowInInspector]
+[Header("存储所有Checkpoint的字典")]
+public static Dictionary<string, Checkpoint> IsRun_Checkpoints_Dictionary=new Dictionary<string, Checkpoint>();
+[Header("新增的Checkpoint数据")]
+public static Dictionary<string, CheckpointData> NewCheckpointData = new Dictionary<string, CheckpointData>();
+
+[Header("当前激活的Checkpoint的名字,也就是玩家的复活点")]
+[ShowInInspector]
+public static string CurrentActiveCheckpointName = "默认检查点";
+
+// 新增：玩家总死亡次数
+[Header("玩家总死亡次数")]
+[ShowInInspector]
+public static int PlayerDeathCount = 0;
+#endregion
+
     #region 对象参数
     [Header("当前Checkpoint数据")]
     public CheckpointData Data = new();
@@ -65,16 +72,29 @@ public class Checkpoint : InteractBase
         SetThisCheckpointActive();
     }
 
-    [Tooltip("回到指定的Checkpoint")]
-    public static void BackToCheckPoint(string checkpointName, GameObject player)
+[Tooltip("回到指定的Checkpoint")]
+public static void BackToCheckPoint(string checkpointName, GameObject player)
+{
+    // 增加玩家死亡次数
+    PlayerDeathCount++;
+    SavePlayerDeathCount(); // 保存到持久化存储
+    
+    // 原有逻辑
+    player.transform.position = IsRun_Checkpoints_Dictionary[checkpointName].transform.position;
+    player.transform.position += RespawnPositionOffset;
+    player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+    player.GetComponent<Rigidbody2D>().angularVelocity = 0;
+    player.transform.rotation = Quaternion.Euler(0, 0, 0);
+}
+    /// <summary>
+    /// 获取玩家总死亡次数
+    /// </summary>
+    /// <returns>玩家死亡次数</returns>
+    public static int GetPlayerDeathCount()
     {
-        //TODO 在回去时清理一下
-        player.transform.position = IsRun_Checkpoints_Dictionary[checkpointName].transform.position;
-        player.transform.position += RespawnPositionOffset;
-        player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        player.GetComponent<Rigidbody2D>().angularVelocity = 0;
-        player.transform.rotation = Quaternion.Euler(0, 0, 0);
+        return PlayerDeathCount;
     }
+
     [Tooltip("回到当前激活的Checkpoint")]
     public static void BackToCurrentActiveCheckpoint(GameObject player)
     {
@@ -142,16 +162,35 @@ public class Checkpoint : InteractBase
         }
         NewCheckpointData[checkpoint.name] = checkpoint.GetComponent<Checkpoint>().Data;
     }
+
+    /// <summary>
+/// 从持久化存储中恢复玩家死亡次数
+/// </summary>
+public static void LoadPlayerDeathCount()
+{
+    // 从PlayerPrefs中读取死亡次数，如果没有则默认为0
+    PlayerDeathCount = PlayerPrefs.GetInt("PlayerDeathCount", 0);
+}
+
+/// <summary>
+/// 保存玩家死亡次数到持久化存储
+/// </summary>
+public static void SavePlayerDeathCount()
+{
+    PlayerPrefs.SetInt("PlayerDeathCount", PlayerDeathCount);
+    PlayerPrefs.Save();
+}
 }
 
 [System.Serializable]
 public class CheckpointData
 {
     [ShowInInspector]
-    [Header("记录点名字")]
+    [Header("记录名称")]
     public string CheckpointName = "";
-    [Header("记录点位置")]
+    [Header("记录位置")]
     public Vector3 CheckpointPosition = Vector3.zero;
-    [Header("是否已经被激活了")]
+    [Header("是否已经被激活")]
     public bool activatedState = false;
+    // 移除了 playerReturnCount 字段
 }
